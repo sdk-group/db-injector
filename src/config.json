@@ -1,0 +1,12 @@
+{
+    "couchbird": {
+        "server_ip": "127.0.0.1",
+        "n1ql": "127.0.0.1:8093"
+    },
+    "buckets": {
+        "main": "rdf",
+        "auth": "ss",
+        "history": "rdf"
+    },
+    "filename": "./data_expanded_parsed.json"
+}
