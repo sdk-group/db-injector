@@ -2136,7 +2136,7 @@
         "@type": "Terminal",
         "attached_to": ["department-1"],
         "bound_service_groups": ["sg-0"],
-        "prebook_state": ["booked"],
+        "prebook_autoregister": [false],
         "default_agent": ["megatron-1"],
         "label": ["Терминал 1"],
         "device_type": ["terminal"],
