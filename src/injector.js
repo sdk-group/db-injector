@@ -7,7 +7,6 @@ class Injector {
 	constructor(cfg) {
 		this.db = new RDFcb(cfg.couchbird);
 		this.cfg = cfg;
-		this.data = require(cfg.filename);
 		this.main_bucket = this.db.bucket(cfg.buckets.main);
 	}
 
@@ -15,8 +14,8 @@ class Injector {
 		return this.main_bucket.N1QL(Couchbird.N1qlQuery.fromString("CREATE PRIMARY INDEX ON " + this.cfg.buckets.main + ";"));
 	}
 
-	upsert() {
-		return this.main_bucket.upsertNodes(this.data);
+	upsert(data) {
+		return this.main_bucket.upsertNodes(data);
 	}
 
 	remove(keys) {

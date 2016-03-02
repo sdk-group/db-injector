@@ -1,12 +1,13 @@
 let cfg = require("./config.json");
-let Injector = require("./Injector");
-
+let Injector = require("./injector.js");
+let data = require(cfg.filename);
 
 let inj = new Injector(cfg);
 
 inj.init_n1ql()
 	.then((res) => {
-		return inj.upsert();
+		console.log("UPSERT");
+		return inj.upsert(data);
 	})
 	.then((res) => {
 		console.log("Done!");

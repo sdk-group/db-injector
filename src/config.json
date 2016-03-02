@@ -1,12 +1,12 @@
 {
     "couchbird": {
-        "server_ip": "127.0.0.1",
-        "n1ql": "127.0.0.1:8093"
+        "server_ip": "194.226.171.146",
+        "n1ql": "194.226.171.146:8093"
     },
     "buckets": {
         "main": "rdf",
         "auth": "ss",
         "history": "rdf"
     },
-    "filename": "./data_expanded_parsed.json"
+    "filename": "./oren_base_itog.json"
 }
