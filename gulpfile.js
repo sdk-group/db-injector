@@ -1,78 +1,51 @@
 'use strict'
 
 let gulp = require("gulp");
-let sourcemaps = require("gulp-sourcemaps");
-let babel = require("gulp-babel");
 let watch = require('gulp-watch');
 let changed = require('gulp-changed');
-let nodemon = require('gulp-nodemon');
 let plumber = require('gulp-plumber');
 let path = require('path');
-let demon;
+let Promise = require('bluebird');
+let fs = Promise.promisifyAll(require('fs'));
 
+let cfg = require("./src/config.json");
+let Injector = require("./src/injector.js");
 
-gulp.task("default", ['es6']);
+let inj = new Injector(cfg);
 
-gulp.task("sourcemaps", function () {
-	return gulp.src("src/**/*.js")
-		.pipe(sourcemaps.init())
-		.pipe(babel())
-		.pipe(sourcemaps.write("./maps"))
-		.pipe(gulp.dest("build"));
-});
-
-gulp.task("es6-js", function () {
-	return gulp.src(["src/**/*.js", "tests/**/*.js"])
-		.pipe(changed("build"))
-		.pipe(plumber({
-			errorHandler: function (e) {
-				console.log('error', e);
-			}
-		}))
-		.pipe(babel())
-		.pipe(gulp.dest("build"))
-		.on('end', function () {
-			console.log('end build');
+gulp.task('inject', () => {
+	inj.init_n1ql()
+		.then((res) => {
+			console.log("UPSERT");
+			return inj.upsert(data);
+		})
+		.then((res) => {
+			console.log("Done!");
+			process.exit();
+		})
+		.catch((err) => {
+			console.log("ERR", err.stack);
+			process.exit(1);
 		});
 });
 
-gulp.task("json", function () {
-	return gulp.src(["src/**/*.json", "tests/**/*.json"])
-		.pipe(gulp.dest("build"));
-});
 
-gulp.task('es6', ['es6-js', 'json']);
-
-gulp.task('test', ['start-test'], function () {
-	gulp.watch(["src/**/*.js", "tests/**/*.js"], ['es6']);
-});
-
-gulp.task('serve', ['start-serve'], function () {
-	gulp.watch(["src/**/*.js", "tests/**/*.js"], ['es6']);
-});
-
-gulp.task('start-test', function () {
-	demon = nodemon({
-		script: 'build/run.js',
-		watch: ['build/'],
-		execMap: {
-			"js": "node  --harmony --harmony_proxies"
-		},
-		env: {
-			'NODE_ENV': 'development'
-		}
-	});
-});
-
-gulp.task('start-serve', function () {
-	demon = nodemon({
-		script: 'build/index.js',
-		watch: ['build/'],
-		execMap: {
-			"js": "node  --harmony --harmony_proxies"
-		},
-		env: {
-			'NODE_ENV': 'development'
-		}
-	});
+gulp.task('extract', () => {
+	inj.init_n1ql()
+		.then((res) => {
+			console.log("EXTRACT");
+			return inj.pullAll();
+		})
+		.then((res) => {
+			let data = JSON.stringify(res, null, 4);
+			return fs.writeFileAsync("output.json", data)
+		})
+		.then((res) => {
+			console.log("Done!");
+			process.exit();
+		})
+		.catch((err) => {
+			console.log("ERR", err.stack);
+			process.exit(1);
+		});
 });
