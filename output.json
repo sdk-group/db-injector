@@ -1,8 +1,22 @@
 [
     {
+        "@id": "global_agent_permissions",
+        "@type": "Description",
+        "content": {
+            "ticket-by-id": {
+                "description": "",
+                "label": "",
+                "params": {
+                    "postponed": false,
+                    "registered": false
+                }
+            }
+        }
+    },
+    {
         "@id": "global_org_structure",
-        "@type": "Organization",
-        "has_unit": [
+        "@type": "Description",
+        "content": [
             {
                 "@id": "office-1",
                 "@type": "Office",
@@ -10,6 +24,14 @@
                     "live",
                     "prebook"
                 ],
+                "digital_display_options": {
+                    "height": 9,
+                    "symbol_depth": 4,
+                    "type": "SvetovodMatrix",
+                    "width": 24,
+                    "x_offset": 0,
+                    "y_offset": -1
+                },
                 "error_dialog_duration": 10,
                 "formatted_address": "г. Новосибирск, ул. Николаева, 11",
                 "has_unit": [
@@ -18,8 +40,14 @@
                         "@type": "Department",
                         "formatted_address": "г. Новосибирск, ул. Николаева, 11",
                         "has_schedule": {
-                            "live": "schedule-1",
-                            "prebook": "schedule-1"
+                            "live": [
+                                "schedule-1",
+                                "schedule-1"
+                            ],
+                            "prebook": [
+                                "schedule-1",
+                                "schedule-1"
+                            ]
                         },
                         "label": "Отдел 1",
                         "pin_code_prefix": "001",
@@ -34,18 +62,133 @@
                     }
                 ],
                 "label": "МФЦ Офис 1",
-                "live_autopostpone": 60,
+                "live_autopostpone": 10,
                 "live_autopostpone_count": 1,
-                "live_autorestore": 60,
+                "live_autorestore": 10,
+                "mkgu_code": "000",
                 "org_timezone": "Asia/Yekaterinburg",
                 "pin_code_prefix": "001",
                 "prebook_expiration_interval": 600,
                 "prebook_label_prefix": "П",
                 "prebook_observe_max_slots": 100,
                 "prebook_observe_offset": 300,
-                "prebook_register_interval": 5,
+                "prebook_register_interval": 1,
                 "prebook_show_interval": 300,
-                "prebook_slot_uniq_interval": 300
+                "prebook_slot_uniq_interval": 300,
+                "qa_enabled": true
+            },
+            {
+                "@id": "office-2",
+                "@type": "Office",
+                "booking_methods": [
+                    "live",
+                    "prebook"
+                ],
+                "error_dialog_duration": 10,
+                "formatted_address": "г. Новосибирск, ул. Николаева, 11",
+                "has_unit": [
+                    {
+                        "@id": "department-2",
+                        "@type": "Department",
+                        "formatted_address": "г. Новосибирск, ул. Николаева, 11",
+                        "has_schedule": {
+                            "live": [
+                                "schedule-1",
+                                "schedule-1"
+                            ],
+                            "prebook": [
+                                "schedule-1",
+                                "schedule-1"
+                            ]
+                        },
+                        "label": "Отдел 2",
+                        "pin_code_prefix": "002",
+                        "priority_description": {
+                            "invalid": {
+                                "value": 2
+                            },
+                            "veteran": {
+                                "value": 1
+                            }
+                        }
+                    }
+                ],
+                "label": "МФЦ Офис 2",
+                "live_autopostpone": 10,
+                "live_autopostpone_count": 1,
+                "live_autorestore": 10,
+                "mkgu_code": "000",
+                "org_timezone": "Asia/Yekaterinburg",
+                "pin_code_prefix": "002",
+                "prebook_expiration_interval": 600,
+                "prebook_label_prefix": "П",
+                "prebook_observe_max_slots": 100,
+                "prebook_observe_offset": 300,
+                "prebook_register_interval": 1,
+                "prebook_show_interval": 300,
+                "prebook_slot_uniq_interval": 300,
+                "qa_enabled": true
+            }
+        ]
+    },
+    {
+        "@id": "human-1",
+        "@type": "Employee",
+        "available_workstation": [
+            "pc-1",
+            "pc-2"
+        ],
+        "default_workstation": "pc-1",
+        "first_name": "Лариса",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2",
+            "resource": "schedule-0"
+        },
+        "last_name": "Васильева",
+        "login": "oper",
+        "middle_name": "Ивановна",
+        "password_hash": "123456",
+        "permissions": {
+            "ticket-by-id": {
+                "postponed": true,
+                "registered": true
+            }
+        },
+        "provides": [
+            "service-1",
+            "service-2",
+            "service-3",
+            "service-4",
+            "service-5",
+            "service-6"
+        ],
+        "state": "active"
+    },
+    {
+        "@id": "global_membership_description",
+        "@type": "Description",
+        "content": [
+            {
+                "@id": "membership-1",
+                "@type": "Membership",
+                "member": "human-1",
+                "organization": "department-1",
+                "role": "Operator"
+            },
+            {
+                "@id": "membership-2",
+                "@type": "Membership",
+                "member": "human-2",
+                "organization": "department-1",
+                "role": "Operator"
+            },
+            {
+                "@id": "membership-3",
+                "@type": "Membership",
+                "member": "human-3",
+                "organization": "department-1",
+                "role": "Administrator"
             }
         ]
     },
@@ -72,199 +215,6 @@
         }
     },
     {
-        "@id": "human-1",
-        "@type": "Employee",
-        "available_workstation": [
-            "pc-1",
-            "pc-2"
-        ],
-        "default_workstation": "pc-1",
-        "first_name": "Лариса",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2",
-            "resource": "schedule-1"
-        },
-        "last_name": "Васильева",
-        "login": "oper",
-        "middle_name": "Ивановна",
-        "password_hash": "123456",
-        "permissions": {
-            "ticket-by-id": {
-                "postponed": true,
-                "registered": true
-            }
-        },
-        "provides": [
-            "service-1",
-            "service-2",
-            "service-3",
-            "service-4",
-            "service-5",
-            "service-6"
-        ],
-        "state": "active"
-    },
-    {
-        "@id": "global_membership_description",
-        "@type": "Description",
-        "has_description": [
-            {
-                "@id": "membership-1",
-                "@type": "Membership",
-                "member": "human-1",
-                "organization": "department-1",
-                "role": "Operator"
-            },
-            {
-                "@id": "membership-2",
-                "@type": "Membership",
-                "member": "human-2",
-                "organization": "department-1",
-                "role": "Operator"
-            },
-            {
-                "@id": "membership-3",
-                "@type": "Membership",
-                "member": "human-3",
-                "organization": "department-1",
-                "role": "Administrator"
-            }
-        ]
-    },
-    {
-        "@id": "global_agent_permissions",
-        "@type": "Description",
-        "content": {
-            "ticket-by-id": {
-                "description": "",
-                "label": "",
-                "params": {
-                    "postponed": false,
-                    "registered": false
-                }
-            }
-        }
-    },
-    {
-        "@id": "human-2",
-        "@type": "Employee",
-        "available_workstation": [
-            "pc-1",
-            "pc-2"
-        ],
-        "default_workstation": "pc-2",
-        "first_name": "Иван",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2",
-            "resource": "schedule-1"
-        },
-        "last_name": "Иванов",
-        "login": "oper2",
-        "middle_name": "Иванович",
-        "password_hash": "123456",
-        "permissions": {
-            "ticket-by-id": {
-                "postponed": true,
-                "registered": false
-            }
-        },
-        "provides": [
-            "service-1",
-            "service-2",
-            "service-3",
-            "service-4",
-            "service-5",
-            "service-6"
-        ],
-        "state": "active"
-    },
-    {
-        "@id": "pc-2",
-        "@type": "Workstation",
-        "attached_to": "department-1",
-        "default_agent": "human-2",
-        "device_type": "control-panel",
-        "label": "Окно 2",
-        "short_label": "2"
-    },
-    {
-        "@id": "pc-1",
-        "@type": "Workstation",
-        "attached_to": "department-1",
-        "default_agent": "human-1",
-        "device_type": "control-panel",
-        "label": "Окно 1",
-        "occupied_by": [
-            "human-2",
-            "human-1"
-        ],
-        "short_label": "1"
-    },
-    {
-        "@id": "megatron-1",
-        "@type": "SystemEntity",
-        "available_workstation": "term-1",
-        "default_workstation": "term-1",
-        "login": "megatron",
-        "password_hash": "1",
-        "state": "active"
-    },
-    {
-        "@id": "pc-4",
-        "@type": "Workstation",
-        "attached_to": "department-1",
-        "default_agent": "human-4",
-        "device_type": "control-panel",
-        "label": "Окно 4",
-        "occupied_by": [
-            null
-        ],
-        "short_label": "4"
-    },
-    {
-        "@id": "megatron-2",
-        "@type": "SystemEntity",
-        "available_workstation": "rd-1",
-        "default_workstation": "rd-1",
-        "login": "rd",
-        "password_hash": "1",
-        "state": "active"
-    },
-    {
-        "@id": "human-3",
-        "@type": "Employee",
-        "available_workstation": [
-            "pc-1",
-            "pc-2",
-            "pc-3",
-            "pandora-1"
-        ],
-        "default_workstation": "pandora-1",
-        "first_name": "Публий",
-        "last_name": "Стаций",
-        "login": "admin",
-        "middle_name": "Папиний",
-        "password_hash": "123456",
-        "permissions": {
-            "ticket-by-id": {
-                "postponed": true,
-                "registered": true
-            }
-        },
-        "state": "active"
-    },
-    {
-        "@id": "pc-3",
-        "@type": "Workstation",
-        "attached_to": "department-1",
-        "default_agent": "human-3",
-        "device_type": "control-panel",
-        "label": "Окно 3",
-        "short_label": "3"
-    },
-    {
         "@id": "iris_config_service_groups",
         "@type": "Config",
         "main_group": {
@@ -286,6 +236,10 @@
             "control-panel": {
                 "params": {},
                 "path": "iris-service-control-panel"
+            },
+            "digital-display": {
+                "params": {},
+                "path": "iris-service-digital-display"
             },
             "doctor": {
                 "params": {
@@ -343,6 +297,10 @@
                     "prebook_check_interval": 10
                 },
                 "path": "iris-service-prebook"
+            },
+            "qa": {
+                "params": {},
+                "path": "iris-service-qa"
             },
             "queue": {
                 "params": {
@@ -407,58 +365,61 @@
         "spawn_limit": 10
     },
     {
-        "@id": "pandora-1",
-        "@type": "Workstation",
-        "attached_to": "department-1",
-        "default_agent": "human-7",
-        "device_type": "pandora-box",
-        "label": "Pandora's box",
-        "occupied_by": [
-            "human-3"
+        "@id": "human-2",
+        "@type": "Employee",
+        "available_workstation": [
+            "pc-1",
+            "pc-2"
         ],
-        "short_label": "666"
-    },
-    {
-        "@id": "schedule-1",
-        "@type": "Schedule",
-        "has_day": [
-            "Friday",
-            "Monday",
-            "Tuesday",
-            "Saturday",
-            "Wednesday",
-            "Sunday",
-            "Thursday"
-        ],
-        "has_time_description": {
-            "data": [
-                [
-                    0,
-                    86400
-                ]
-            ],
-            "state": "a"
-        }
-    },
-    {
-        "@id": "service-147",
-        "@type": "Service",
-        "code_frgu": "5600000010000003063",
-        "dept_code_frgu": "5600000010000000107",
+        "default_workstation": "pc-2",
+        "first_name": "Иван",
         "has_schedule": {
             "live": "schedule-2",
-            "prebook": "schedule-2"
+            "prebook": "schedule-2",
+            "resource": "schedule-0"
         },
-        "label": "Информирование о положении на рынке труда Оренбургской области",
-        "live_operation_time": 900,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 900,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
+        "last_name": "Иванов",
+        "login": "oper2",
+        "middle_name": "Иванович",
+        "password_hash": "123456",
+        "permissions": {
+            "ticket-by-id": {
+                "postponed": true,
+                "registered": false
+            }
+        },
+        "provides": [
+            "service-1",
+            "service-2",
+            "service-3",
+            "service-4",
+            "service-5",
+            "service-6"
+        ],
+        "state": "active"
+    },
+    {
+        "@id": "human-3",
+        "@type": "Spirit",
+        "available_workstation": [
+            "pc-1",
+            "pc-2",
+            "pc-3",
+            "pandora-1"
+        ],
+        "default_workstation": "pandora-1",
+        "first_name": "Публий",
+        "last_name": "Стаций",
+        "login": "admin",
+        "middle_name": "Папиний",
+        "password_hash": "123456",
+        "permissions": {
+            "ticket-by-id": {
+                "postponed": true,
+                "registered": true
+            }
+        },
+        "state": "active"
     },
     {
         "@id": "qa_questions",
@@ -471,7 +432,7 @@
                     {
                         "@id": "answer-1-1",
                         "@type": "Info",
-                        "code": "code1",
+                        "code": "very-bad",
                         "description": "",
                         "icon": false,
                         "label": "Очень плохо"
@@ -479,7 +440,7 @@
                     {
                         "@id": "answer-1-2",
                         "@type": "Info",
-                        "code": "code2",
+                        "code": "bad",
                         "description": "",
                         "icon": false,
                         "label": "Плохо"
@@ -487,7 +448,7 @@
                     {
                         "@id": "answer-1-3",
                         "@type": "Info",
-                        "code": "code3",
+                        "code": "normal",
                         "description": "",
                         "icon": false,
                         "label": "Нормально"
@@ -495,7 +456,7 @@
                     {
                         "@id": "answer-1-4",
                         "@type": "Info",
-                        "code": "code4",
+                        "code": "good",
                         "description": "",
                         "icon": false,
                         "label": "Хорошо"
@@ -503,7 +464,7 @@
                     {
                         "@id": "answer-1-5",
                         "@type": "Info",
-                        "code": "code5",
+                        "code": "excellent",
                         "description": "",
                         "icon": false,
                         "label": "Отлично"
@@ -513,7 +474,8 @@
                 "description": "Время предоставления государственной услуги",
                 "icon": false,
                 "label": "Q1",
-                "order": 0
+                "order": 0,
+                "selected": "excellent"
             },
             {
                 "@id": "question-2",
@@ -522,7 +484,7 @@
                     {
                         "@id": "answer-2-1",
                         "@type": "Info",
-                        "code": "code1",
+                        "code": "very-bad",
                         "description": "",
                         "icon": false,
                         "label": "Очень плохо"
@@ -530,7 +492,7 @@
                     {
                         "@id": "answer-2-2",
                         "@type": "Info",
-                        "code": "code2",
+                        "code": "bad",
                         "description": "",
                         "icon": false,
                         "label": "Плохо"
@@ -538,7 +500,7 @@
                     {
                         "@id": "answer-2-3",
                         "@type": "Info",
-                        "code": "code3",
+                        "code": "normal",
                         "description": "",
                         "icon": false,
                         "label": "Нормально"
@@ -546,7 +508,7 @@
                     {
                         "@id": "answer-2-4",
                         "@type": "Info",
-                        "code": "code4",
+                        "code": "good",
                         "description": "",
                         "icon": false,
                         "label": "Хорошо"
@@ -554,7 +516,7 @@
                     {
                         "@id": "answer-2-5",
                         "@type": "Info",
-                        "code": "code5",
+                        "code": "excellent",
                         "description": "",
                         "icon": false,
                         "label": "Отлично"
@@ -564,7 +526,8 @@
                 "description": "Время ожидания в очереди при получении государственной услуги",
                 "icon": false,
                 "label": "Q2",
-                "order": 0
+                "order": 0,
+                "selected": "excellent"
             },
             {
                 "@id": "question-3",
@@ -573,7 +536,7 @@
                     {
                         "@id": "answer-3-1",
                         "@type": "Info",
-                        "code": "code1",
+                        "code": "very-bad",
                         "description": "",
                         "icon": false,
                         "label": "Очень плохо"
@@ -581,7 +544,7 @@
                     {
                         "@id": "answer-3-2",
                         "@type": "Info",
-                        "code": "code2",
+                        "code": "bad",
                         "description": "",
                         "icon": false,
                         "label": "Плохо"
@@ -589,7 +552,7 @@
                     {
                         "@id": "answer-3-3",
                         "@type": "Info",
-                        "code": "code3",
+                        "code": "normal",
                         "description": "",
                         "icon": false,
                         "label": "Нормально"
@@ -597,7 +560,7 @@
                     {
                         "@id": "answer-3-4",
                         "@type": "Info",
-                        "code": "code4",
+                        "code": "good",
                         "description": "",
                         "icon": false,
                         "label": "Хорошо"
@@ -605,7 +568,7 @@
                     {
                         "@id": "answer-3-5",
                         "@type": "Info",
-                        "code": "code5",
+                        "code": "excellent",
                         "description": "",
                         "icon": false,
                         "label": "Отлично"
@@ -615,7 +578,8 @@
                 "description": "Вежливость и компетенция сотрудника, взаимодействующего с заявителем при предоставлении государственной услуги",
                 "icon": false,
                 "label": "Q3",
-                "order": 0
+                "order": 0,
+                "selected": "excellent"
             },
             {
                 "@id": "question-4",
@@ -624,7 +588,7 @@
                     {
                         "@id": "answer-4-1",
                         "@type": "Info",
-                        "code": "code1",
+                        "code": "very-bad",
                         "description": "",
                         "icon": false,
                         "label": "Очень плохо"
@@ -632,7 +596,7 @@
                     {
                         "@id": "answer-4-2",
                         "@type": "Info",
-                        "code": "code2",
+                        "code": "bad",
                         "description": "",
                         "icon": false,
                         "label": "Плохо"
@@ -640,7 +604,7 @@
                     {
                         "@id": "answer-4-3",
                         "@type": "Info",
-                        "code": "code3",
+                        "code": "normal",
                         "description": "",
                         "icon": false,
                         "label": "Нормально"
@@ -648,7 +612,7 @@
                     {
                         "@id": "answer-4-4",
                         "@type": "Info",
-                        "code": "code4",
+                        "code": "good",
                         "description": "",
                         "icon": false,
                         "label": "Хорошо"
@@ -656,7 +620,7 @@
                     {
                         "@id": "answer-4-5",
                         "@type": "Info",
-                        "code": "code5",
+                        "code": "excellent",
                         "description": "",
                         "icon": false,
                         "label": "Отлично"
@@ -666,7 +630,8 @@
                 "description": "Комфортность условий в помещении, в котором предоставлена государственная услуга",
                 "icon": false,
                 "label": "Q4",
-                "order": 0
+                "order": 0,
+                "selected": "excellent"
             },
             {
                 "@id": "question-5",
@@ -675,7 +640,7 @@
                     {
                         "@id": "answer-5-1",
                         "@type": "Info",
-                        "code": "code1",
+                        "code": "very-bad",
                         "description": "",
                         "icon": false,
                         "label": "Очень плохо"
@@ -683,7 +648,7 @@
                     {
                         "@id": "answer-5-2",
                         "@type": "Info",
-                        "code": "code2",
+                        "code": "bad",
                         "description": "",
                         "icon": false,
                         "label": "Плохо"
@@ -691,7 +656,7 @@
                     {
                         "@id": "answer-5-3",
                         "@type": "Info",
-                        "code": "code3",
+                        "code": "normal",
                         "description": "",
                         "icon": false,
                         "label": "Нормально"
@@ -699,7 +664,7 @@
                     {
                         "@id": "answer-5-4",
                         "@type": "Info",
-                        "code": "code4",
+                        "code": "good",
                         "description": "",
                         "icon": false,
                         "label": "Хорошо"
@@ -707,7 +672,7 @@
                     {
                         "@id": "answer-5-5",
                         "@type": "Info",
-                        "code": "code5",
+                        "code": "excellent",
                         "description": "",
                         "icon": false,
                         "label": "Отлично"
@@ -717,49 +682,101 @@
                 "description": "Доступность информации о порядке предоставления государственной услуги",
                 "icon": false,
                 "label": "Q5",
-                "order": 0
+                "order": 0,
+                "selected": "excellent"
             }
         ]
     },
     {
-        "@id": "service-1",
-        "@type": "Service",
-        "code_frgu": "5640100010000004418",
-        "dept_code_frgu": "5640100010000003159",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Услуга 10",
-        "live_operation_time": 600,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 600,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 100,
-        "priority": 0,
-        "service_code_epgu": 0
+        "@id": "rd-1",
+        "@type": "Roomdisplay",
+        "attached_to": "department-1",
+        "default_agent": "megatron-2",
+        "default_voice_duration": 15000,
+        "device_type": "roomdisplay",
+        "label": "Табло 1",
+        "occupied_by": [
+            "megatron-2"
+        ],
+        "pop_on_arrival": false
     },
     {
-        "@id": "service-12",
-        "@type": "Service",
-        "code_frgu": 0,
-        "dept_code_frgu": "5640100010000003159",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Предоставление земельных участков для индивидуального жилищного строительства, ведения личного подсобного хозяйства",
-        "live_operation_time": 1800,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1800,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
+        "@id": "pandora-1",
+        "@type": "Workstation",
+        "attached_to": "department-1",
+        "default_agent": "human-7",
+        "device_type": "pandora-box",
+        "label": "Pandora's box",
+        "occupied_by": [
+            "human-3"
+        ],
+        "short_label": "666"
+    },
+    {
+        "@id": "pc-6",
+        "@type": "Workstation",
+        "attached_to": "department-1",
+        "default_agent": "human-6",
+        "device_type": "control-panel",
+        "label": "Окно 6",
+        "short_label": "6"
+    },
+    {
+        "@id": "qa-1",
+        "@type": "QaMobile",
+        "attached_to": "department-1",
+        "default_agent": "megatron-3",
+        "device_type": "qa",
+        "hold_screen_design": "/images/qa/landing.html",
+        "label": "QaMobile 1"
+    },
+    {
+        "@id": "megatron-3",
+        "@type": "SystemEntity",
+        "available_workstation": "qa-department-1-pc-1",
+        "default_workstation": "qa-department-1-pc-1",
+        "login": "qa",
+        "password_hash": "1",
+        "state": "active"
+    },
+    {
+        "@id": "pc-3",
+        "@type": "Workstation",
+        "attached_to": "department-1",
+        "default_agent": "human-3",
+        "device_type": "control-panel",
+        "label": "Окно 3",
+        "short_label": "3"
+    },
+    {
+        "@id": "pc-4",
+        "@type": "Workstation",
+        "attached_to": "department-1",
+        "default_agent": "human-4",
+        "device_type": "control-panel",
+        "label": "Окно 4",
+        "occupied_by": [
+            null
+        ],
+        "short_label": "4"
+    },
+    {
+        "@id": "qa-department-1-template",
+        "@type": "Qa",
+        "attached_to": "department-1",
+        "default_agent": "megatron-3",
+        "device_type": "qa",
+        "hold_screen_design": "/images/qa/landing.html",
+        "label": "QaMobile 1"
+    },
+    {
+        "@id": "megatron-2",
+        "@type": "SystemEntity",
+        "available_workstation": "rd-1",
+        "default_workstation": "rd-1",
+        "login": "rd",
+        "password_hash": "1",
+        "state": "active"
     },
     {
         "@id": "pc-5",
@@ -771,15 +788,74 @@
         "short_label": "5"
     },
     {
-        "@id": "service-13",
+        "@id": "megatron-1",
+        "@type": "SystemEntity",
+        "available_workstation": "term-1",
+        "default_workstation": "term-1",
+        "login": "megatron",
+        "password_hash": "1",
+        "state": "active"
+    },
+    {
+        "@id": "qa-department-1-pc-1",
+        "@type": "Qa",
+        "attached_to": "department-1",
+        "default_agent": "megatron-3",
+        "device_type": "qa",
+        "hold_screen_design": "/images/qa/landing.html",
+        "label": "QaMobile 1"
+    },
+    {
+        "@id": "pc-2",
+        "@type": "Workstation",
+        "attached_to": "department-1",
+        "default_agent": "human-2",
+        "device_type": "control-panel",
+        "label": "Окно 2",
+        "occupied_by": [
+            "human-1"
+        ],
+        "short_label": "2"
+    },
+    {
+        "@id": "pc-1",
+        "@type": "Workstation",
+        "attached_to": "department-1",
+        "default_agent": "human-1",
+        "device_type": "control-panel",
+        "label": "Окно 1",
+        "occupied_by": [
+            "human-2",
+            "human-1"
+        ],
+        "short_label": "1"
+    },
+    {
+        "@id": "schedule-3",
+        "@type": "Schedule",
+        "has_day": [
+            "Saturday"
+        ],
+        "has_time_description": {
+            "data": [
+                [
+                    0,
+                    86400
+                ]
+            ],
+            "state": "a"
+        }
+    },
+    {
+        "@id": "service-10",
         "@type": "Service",
-        "code_frgu": "5600000000160770692",
+        "code_frgu": "564010001000000315",
         "dept_code_frgu": "5640100010000003159",
         "has_schedule": {
             "live": "schedule-2",
             "prebook": "schedule-2"
         },
-        "label": "Разрешение на использование земель, находящихся в муниципальной собственности, или государственная собственность на которые не разграничена",
+        "label": "Согласование переустройства/перепланировки помещения",
         "live_operation_time": 1800,
         "ordering": 1,
         "prebook_interval": 30,
@@ -811,19 +887,6 @@
         "service_code_epgu": 0
     },
     {
-        "@id": "rd-1",
-        "@type": "Roomdisplay",
-        "attached_to": "department-1",
-        "default_agent": "megatron-2",
-        "default_voice_duration": 15000,
-        "device_type": "roomdisplay",
-        "label": "Табло 1",
-        "occupied_by": [
-            "megatron-2"
-        ],
-        "pop_on_arrival": false
-    },
-    {
         "@id": "service-11",
         "@type": "Service",
         "code_frgu": 0,
@@ -838,197 +901,6 @@
         "prebook_interval": 30,
         "prebook_offset": 0,
         "prebook_operation_time": 1800,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "schedule-2",
-        "@type": "Schedule",
-        "has_day": [
-            "Thursday",
-            "Tuesday",
-            "Monday",
-            "Friday",
-            "Sunday",
-            "Wednesday",
-            "Saturday"
-        ],
-        "has_time_description": {
-            "data": [
-                [
-                    32400,
-                    79200
-                ]
-            ],
-            "state": "a"
-        }
-    },
-    {
-        "@id": "service-10",
-        "@type": "Service",
-        "code_frgu": "564010001000000315",
-        "dept_code_frgu": "5640100010000003159",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Согласование переустройства/перепланировки помещения",
-        "live_operation_time": 1800,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1800,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-145",
-        "@type": "Service",
-        "code_frgu": "5600000010000050068",
-        "dept_code_frgu": "5600000010000000121",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Разрешение на легковое такси",
-        "live_operation_time": 1200,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1200,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "pc-6",
-        "@type": "Workstation",
-        "attached_to": "department-1",
-        "default_agent": "human-6",
-        "device_type": "control-panel",
-        "label": "Окно 6",
-        "short_label": "6"
-    },
-    {
-        "@id": "service-14",
-        "@type": "Service",
-        "code_frgu": "5640100010000004425",
-        "dept_code_frgu": "5640100010000003159",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Предоставление земельного участка на котором расположены здания, сооружения",
-        "live_operation_time": 1800,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1800,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-151",
-        "@type": "Service",
-        "code_frgu": "5600000010000051048",
-        "dept_code_frgu": "5600000010000000107",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Информация работодателям о кандидатурах на замещение вакансий",
-        "live_operation_time": 900,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 900,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-156",
-        "@type": "Service",
-        "code_frgu": "5600000010000001604",
-        "dept_code_frgu": "5600000010000000015",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Компенсация расходов на услуги связи",
-        "live_operation_time": 1200,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1200,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-158",
-        "@type": "Service",
-        "code_frgu": "5600000010000002766",
-        "dept_code_frgu": "5600000010000000015",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Опека или попечительство в отношении недееспособных, неполностью дееспособных граждан",
-        "live_operation_time": 1200,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1200,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-155",
-        "@type": "Service",
-        "code_frgu": "5600000010000001116",
-        "dept_code_frgu": "5600000010000000015",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Ежемесячная выплата ветеранам труда взамен бесплатного проезда на общественном проезде",
-        "live_operation_time": 1200,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1200,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-157",
-        "@type": "Service",
-        "code_frgu": "5600000010000002358",
-        "dept_code_frgu": "5600000010000000015",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Социальная поддержка жертв политических репрессий",
-        "live_operation_time": 1200,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1200,
         "prebook_percentage": 100,
         "prebook_today_percentage": 0,
         "priority": 0,
@@ -1055,6 +927,169 @@
         "service_code_epgu": 0
     },
     {
+        "@id": "service-147",
+        "@type": "Service",
+        "code_frgu": "5600000010000003063",
+        "dept_code_frgu": "5600000010000000107",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Информирование о положении на рынке труда Оренбургской области",
+        "live_operation_time": 900,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 900,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "schedule-0",
+        "@type": "Schedule",
+        "has_day": [
+            "Friday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Sunday",
+            "Saturday",
+            "Thursday"
+        ],
+        "has_time_description": {
+            "data": [
+                [
+                    0,
+                    86400
+                ]
+            ],
+            "state": "a"
+        }
+    },
+    {
+        "@id": "schedule-1",
+        "@type": "Schedule",
+        "has_day": [
+            "Friday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Sunday",
+            "Thursday"
+        ],
+        "has_time_description": {
+            "data": [
+                [
+                    0,
+                    86400
+                ]
+            ],
+            "state": "a"
+        }
+    },
+    {
+        "@id": "service-12",
+        "@type": "Service",
+        "code_frgu": 0,
+        "dept_code_frgu": "5640100010000003159",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Предоставление земельных участков для индивидуального жилищного строительства, ведения личного подсобного хозяйства",
+        "live_operation_time": 1800,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1800,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-1",
+        "@type": "Service",
+        "code_frgu": "5640100010000004418",
+        "dept_code_frgu": "5640100010000003159",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Услуга 10",
+        "live_operation_time": 600,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 600,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 100,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-13",
+        "@type": "Service",
+        "code_frgu": "5600000000160770692",
+        "dept_code_frgu": "5640100010000003159",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Разрешение на использование земель, находящихся в муниципальной собственности, или государственная собственность на которые не разграничена",
+        "live_operation_time": 1800,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1800,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-14",
+        "@type": "Service",
+        "code_frgu": "5640100010000004425",
+        "dept_code_frgu": "5640100010000003159",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Предоставление земельного участка на котором расположены здания, сооружения",
+        "live_operation_time": 1800,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1800,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-148",
+        "@type": "Service",
+        "code_frgu": "5600000010000005514",
+        "dept_code_frgu": "5600000010000000107",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Участие в оплачиваемых общественных работах и предоставление информации об организации таких работ",
+        "live_operation_time": 900,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 900,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
         "@id": "service-149",
         "@type": "Service",
         "code_frgu": "5600000010000006385",
@@ -1075,15 +1110,77 @@
         "service_code_epgu": 0
     },
     {
-        "@id": "service-148",
+        "@id": "schedule-2",
+        "@type": "Schedule",
+        "has_day": [
+            "Thursday",
+            "Tuesday",
+            "Monday",
+            "Friday",
+            "Sunday",
+            "Wednesday",
+            "Saturday"
+        ],
+        "has_time_description": {
+            "data": [
+                [
+                    32400,
+                    86400
+                ]
+            ],
+            "state": "a"
+        }
+    },
+    {
+        "@id": "service-145",
         "@type": "Service",
-        "code_frgu": "5600000010000005514",
+        "code_frgu": "5600000010000050068",
+        "dept_code_frgu": "5600000010000000121",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Разрешение на легковое такси",
+        "live_operation_time": 1200,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1200,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-156",
+        "@type": "Service",
+        "code_frgu": "5600000010000001604",
+        "dept_code_frgu": "5600000010000000015",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Компенсация расходов на услуги связи",
+        "live_operation_time": 1200,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1200,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-152",
+        "@type": "Service",
+        "code_frgu": "5600000010000137309",
         "dept_code_frgu": "5600000010000000107",
         "has_schedule": {
             "live": "schedule-2",
             "prebook": "schedule-2"
         },
-        "label": "Участие в оплачиваемых общественных работах и предоставление информации об организации таких работ",
+        "label": "Справка о величине прожиточного минимума на душу населения",
         "live_operation_time": 900,
         "ordering": 1,
         "prebook_interval": 30,
@@ -1115,20 +1212,60 @@
         "service_code_epgu": 0
     },
     {
-        "@id": "service-160",
+        "@id": "service-164",
         "@type": "Service",
-        "code_frgu": "5600000010000032820",
-        "dept_code_frgu": "5600000010000000157",
+        "code_frgu": "5640100010000023195",
+        "dept_code_frgu": "5640100010000003250",
         "has_schedule": {
             "live": "schedule-2",
             "prebook": "schedule-2"
         },
-        "label": "Организация исполнения запросов социально-правового характера российских граждан (комитет по делам архивов)",
+        "label": "Рассмотрение жалоб и консультирование по вопросу защиты прав потребителей",
+        "live_operation_time": 900,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 900,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-158",
+        "@type": "Service",
+        "code_frgu": "5600000010000002766",
+        "dept_code_frgu": "5600000010000000015",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Опека или попечительство в отношении недееспособных, неполностью дееспособных граждан",
         "live_operation_time": 1200,
         "ordering": 1,
         "prebook_interval": 30,
         "prebook_offset": 0,
         "prebook_operation_time": 1200,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-151",
+        "@type": "Service",
+        "code_frgu": "5600000010000051048",
+        "dept_code_frgu": "5600000010000000107",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Информация работодателям о кандидатурах на замещение вакансий",
+        "live_operation_time": 900,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 900,
         "prebook_percentage": 100,
         "prebook_today_percentage": 0,
         "priority": 0,
@@ -1155,35 +1292,15 @@
         "service_code_epgu": 0
     },
     {
-        "@id": "service-152",
+        "@id": "service-160",
         "@type": "Service",
-        "code_frgu": "5600000010000137309",
-        "dept_code_frgu": "5600000010000000107",
+        "code_frgu": "5600000010000032820",
+        "dept_code_frgu": "5600000010000000157",
         "has_schedule": {
             "live": "schedule-2",
             "prebook": "schedule-2"
         },
-        "label": "Справка о величине прожиточного минимума на душу населения",
-        "live_operation_time": 900,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 900,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-154",
-        "@type": "Service",
-        "code_frgu": "5600000010000001823",
-        "dept_code_frgu": "5600000010000000015",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Справки многодетным семьям",
+        "label": "Организация исполнения запросов социально-правового характера российских граждан (комитет по делам архивов)",
         "live_operation_time": 1200,
         "ordering": 1,
         "prebook_interval": 30,
@@ -1215,20 +1332,20 @@
         "service_code_epgu": 0
     },
     {
-        "@id": "service-159",
+        "@id": "service-163",
         "@type": "Service",
-        "code_frgu": "5600000010000010326",
-        "dept_code_frgu": "5600000010000000157",
+        "code_frgu": "5640100010000023129",
+        "dept_code_frgu": "5640100010000003250",
         "has_schedule": {
             "live": "schedule-2",
             "prebook": "schedule-2"
         },
-        "label": "Организация исполнения запросов социально-правого характера российских и иностранных граждан, а также лиц без гражданства, оформление архивных справок, направляемых в иностранные государства и МИД России",
-        "live_operation_time": 1200,
+        "label": "Разрешение на вырубку зеленых насаждений",
+        "live_operation_time": 900,
         "ordering": 1,
         "prebook_interval": 30,
         "prebook_offset": 0,
-        "prebook_operation_time": 1200,
+        "prebook_operation_time": 900,
         "prebook_percentage": 100,
         "prebook_today_percentage": 0,
         "priority": 0,
@@ -1255,55 +1372,115 @@
         "service_code_epgu": 0
     },
     {
-        "@id": "service-168",
+        "@id": "service-159",
         "@type": "Service",
-        "code_frgu": "5640100010000021824",
-        "dept_code_frgu": "5640100010000003074",
+        "code_frgu": "5600000010000010326",
+        "dept_code_frgu": "5600000010000000157",
         "has_schedule": {
             "live": "schedule-2",
             "prebook": "schedule-2"
         },
-        "label": "Предоставление данных о ранее выполненных отводах земельных участков, землеустроительных дел (за период до 1996 года)",
-        "live_operation_time": 900,
+        "label": "Организация исполнения запросов социально-правого характера российских и иностранных граждан, а также лиц без гражданства, оформление архивных справок, направляемых в иностранные государства и МИД России",
+        "live_operation_time": 1200,
         "ordering": 1,
         "prebook_interval": 30,
         "prebook_offset": 0,
-        "prebook_operation_time": 900,
+        "prebook_operation_time": 1200,
         "prebook_percentage": 100,
         "prebook_today_percentage": 0,
         "priority": 0,
         "service_code_epgu": 0
     },
     {
-        "@id": "service-176",
+        "@id": "service-155",
         "@type": "Service",
-        "code_frgu": "5640100010000004343",
-        "dept_code_frgu": "5640100010000003175",
+        "code_frgu": "5600000010000001116",
+        "dept_code_frgu": "5600000010000000015",
         "has_schedule": {
             "live": "schedule-2",
             "prebook": "schedule-2"
         },
-        "label": "Приватизация жилых помещений",
-        "live_operation_time": 1800,
+        "label": "Ежемесячная выплата ветеранам труда взамен бесплатного проезда на общественном проезде",
+        "live_operation_time": 1200,
         "ordering": 1,
         "prebook_interval": 30,
         "prebook_offset": 0,
-        "prebook_operation_time": 1800,
+        "prebook_operation_time": 1200,
         "prebook_percentage": 100,
         "prebook_today_percentage": 0,
         "priority": 0,
         "service_code_epgu": 0
     },
     {
-        "@id": "service-167",
+        "@id": "service-154",
         "@type": "Service",
-        "code_frgu": "5600000000160468827",
+        "code_frgu": "5600000010000001823",
+        "dept_code_frgu": "5600000010000000015",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Справки многодетным семьям",
+        "live_operation_time": 1200,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1200,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-162",
+        "@type": "Service",
+        "code_frgu": "5600000010000010374",
+        "dept_code_frgu": "5600000010000000157",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Организация исполнения тематических, биографических и генеалогических запросов",
+        "live_operation_time": 1200,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1200,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-157",
+        "@type": "Service",
+        "code_frgu": "5600000010000002358",
+        "dept_code_frgu": "5600000010000000015",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Социальная поддержка жертв политических репрессий",
+        "live_operation_time": 1200,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1200,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-165",
+        "@type": "Service",
+        "code_frgu": "5640100010000023004",
         "dept_code_frgu": "5640100010000003250",
         "has_schedule": {
             "live": "schedule-2",
             "prebook": "schedule-2"
         },
-        "label": "Выписка из похозяйственной книги",
+        "label": "Помощь субъектам потребительского рынка, сферы услуг и предпринимательства",
         "live_operation_time": 900,
         "ordering": 1,
         "prebook_interval": 30,
@@ -1315,75 +1492,15 @@
         "service_code_epgu": 0
     },
     {
-        "@id": "service-17",
+        "@id": "service-170",
         "@type": "Service",
-        "code_frgu": "5640100010000037826",
-        "dept_code_frgu": "5640100010000003159",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Разрешение на условно разрешенный вид использования земельного участка или объекта капитального строительства",
-        "live_operation_time": 1200,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1200,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-169",
-        "@type": "Service",
-        "code_frgu": "5640100010000003546",
+        "code_frgu": "5640100010000004036",
         "dept_code_frgu": "5640100010000003169",
         "has_schedule": {
             "live": "schedule-2",
             "prebook": "schedule-2"
         },
-        "label": "Разрешене на автомобильные перевозки тяжеловесных грузов",
-        "live_operation_time": 1200,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1200,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-173",
-        "@type": "Service",
-        "code_frgu": "5640100010000004338",
-        "dept_code_frgu": "5640100010000003686",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Предоставление информации о имуществе, находящегося в муниципальной собственности",
-        "live_operation_time": 1200,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1200,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-174",
-        "@type": "Service",
-        "code_frgu": "5640100010000022630",
-        "dept_code_frgu": "5640100010000003172",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Признание жилого помещения пригодным (непригодным) для проживания",
+        "label": "Информация о состоянии автомобильных дорог местного значения",
         "live_operation_time": 1200,
         "ordering": 1,
         "prebook_interval": 30,
@@ -1415,106 +1532,6 @@
         "service_code_epgu": 0
     },
     {
-        "@id": "service-164",
-        "@type": "Service",
-        "code_frgu": "5640100010000023195",
-        "dept_code_frgu": "5640100010000003250",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Рассмотрение жалоб и консультирование по вопросу защиты прав потребителей",
-        "live_operation_time": 900,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 900,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-162",
-        "@type": "Service",
-        "code_frgu": "5600000010000010374",
-        "dept_code_frgu": "5600000010000000157",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Организация исполнения тематических, биографических и генеалогических запросов",
-        "live_operation_time": 1200,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1200,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-166",
-        "@type": "Service",
-        "code_frgu": "5640100010000023039",
-        "dept_code_frgu": "5640100010000003250",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Предоставление в топливоснабжающие организации списков граждан, нуждающихся в обеспечении твердым топливом",
-        "live_operation_time": 900,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 900,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-171",
-        "@type": "Service",
-        "code_frgu": 0,
-        "dept_code_frgu": "5640100010000003169",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Разрешение на автомобильные перевозки опасных грузов",
-        "live_operation_time": 1200,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1200,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-170",
-        "@type": "Service",
-        "code_frgu": "5640100010000004036",
-        "dept_code_frgu": "5640100010000003169",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Информация о состоянии автомобильных дорог местного значения",
-        "live_operation_time": 1200,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1200,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
         "@id": "service-172",
         "@type": "Service",
         "code_frgu": "5640100010000005820",
@@ -1535,75 +1552,15 @@
         "service_code_epgu": 0
     },
     {
-        "@id": "service-163",
+        "@id": "service-174",
         "@type": "Service",
-        "code_frgu": "5640100010000023129",
-        "dept_code_frgu": "5640100010000003250",
+        "code_frgu": "5640100010000022630",
+        "dept_code_frgu": "5640100010000003172",
         "has_schedule": {
             "live": "schedule-2",
             "prebook": "schedule-2"
         },
-        "label": "Разрешение на вырубку зеленых насаждений",
-        "live_operation_time": 900,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 900,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-165",
-        "@type": "Service",
-        "code_frgu": "5640100010000023004",
-        "dept_code_frgu": "5640100010000003250",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Помощь субъектам потребительского рынка, сферы услуг и предпринимательства",
-        "live_operation_time": 900,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 900,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-178",
-        "@type": "Service",
-        "code_frgu": "5640100010000004311",
-        "dept_code_frgu": "5640100010000003175",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Предоставление жилых помещений муниципального специализированного жилищного фонда",
-        "live_operation_time": 1800,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1800,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-184",
-        "@type": "Service",
-        "code_frgu": "5640100010000021309",
-        "dept_code_frgu": "5640100010000003143",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Ежемесячная выплата пенсионерам взамен бесплатного проезда на общественном проезде",
+        "label": "Признание жилого помещения пригодным (непригодным) для проживания",
         "live_operation_time": 1200,
         "ordering": 1,
         "prebook_interval": 30,
@@ -1615,60 +1572,40 @@
         "service_code_epgu": 0
     },
     {
-        "@id": "service-183",
+        "@id": "service-169",
         "@type": "Service",
-        "code_frgu": "5640100010000007791",
-        "dept_code_frgu": "5640100010000003131",
+        "code_frgu": "5640100010000003546",
+        "dept_code_frgu": "5640100010000003169",
         "has_schedule": {
             "live": "schedule-2",
             "prebook": "schedule-2"
         },
-        "label": "Запись в детский сад",
+        "label": "Разрешене на автомобильные перевозки тяжеловесных грузов",
+        "live_operation_time": 1200,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1200,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-168",
+        "@type": "Service",
+        "code_frgu": "5640100010000021824",
+        "dept_code_frgu": "5640100010000003074",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Предоставление данных о ранее выполненных отводах земельных участков, землеустроительных дел (за период до 1996 года)",
         "live_operation_time": 900,
         "ordering": 1,
         "prebook_interval": 30,
         "prebook_offset": 0,
         "prebook_operation_time": 900,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-181",
-        "@type": "Service",
-        "code_frgu": "5640100010000004845",
-        "dept_code_frgu": "5640100010000004731",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Разрешение на право организации розничного рынка",
-        "live_operation_time": 1200,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1200,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-186",
-        "@type": "Service",
-        "code_frgu": "5640100010000025961",
-        "dept_code_frgu": "5640100010000003105",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Выдача копий архивных документов (администрация города)",
-        "live_operation_time": 1200,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1200,
         "prebook_percentage": 100,
         "prebook_today_percentage": 0,
         "priority": 0,
@@ -1684,86 +1621,6 @@
             "prebook": "schedule-2"
         },
         "label": "Предоставление малоимущим гражданам жилых помещений по договорам социального найма",
-        "live_operation_time": 1800,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1800,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-20",
-        "@type": "Service",
-        "code_frgu": 0,
-        "dept_code_frgu": "5640100010000003159",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Акт приемочной комиссии, подтверждающий завершение переустройства/перепланировки помещения",
-        "live_operation_time": 1500,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1500,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-21",
-        "@type": "Service",
-        "code_frgu": "5640100010000020386",
-        "dept_code_frgu": "5640100010000003159",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Перевод жилого помещения в нежилое или нежилого помещения в жилое помещение",
-        "live_operation_time": 1800,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1800,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-18",
-        "@type": "Service",
-        "code_frgu": 0,
-        "dept_code_frgu": "5640100010000003159",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Разрешение на отклонение от предельных параметров разрешенного строительства, реконструкции объектов капитального строительства",
-        "live_operation_time": 1200,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1200,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-187",
-        "@type": "Service",
-        "code_frgu": 0,
-        "dept_code_frgu": 0,
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Выдача повторных свидетельств (справок) ЗАГС",
         "live_operation_time": 1800,
         "ordering": 1,
         "prebook_interval": 30,
@@ -1795,22 +1652,142 @@
         "service_code_epgu": 0
     },
     {
-        "@id": "service-2",
+        "@id": "service-17",
         "@type": "Service",
-        "code_frgu": "5640100010000004084",
+        "code_frgu": "5640100010000037826",
         "dept_code_frgu": "5640100010000003159",
         "has_schedule": {
             "live": "schedule-2",
             "prebook": "schedule-2"
         },
-        "label": "Услуга 20",
+        "label": "Разрешение на условно разрешенный вид использования земельного участка или объекта капитального строительства",
         "live_operation_time": 1200,
         "ordering": 1,
         "prebook_interval": 30,
         "prebook_offset": 0,
         "prebook_operation_time": 1200,
         "prebook_percentage": 100,
-        "prebook_today_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-178",
+        "@type": "Service",
+        "code_frgu": "5640100010000004311",
+        "dept_code_frgu": "5640100010000003175",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Предоставление жилых помещений муниципального специализированного жилищного фонда",
+        "live_operation_time": 1800,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1800,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-176",
+        "@type": "Service",
+        "code_frgu": "5640100010000004343",
+        "dept_code_frgu": "5640100010000003175",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Приватизация жилых помещений",
+        "live_operation_time": 1800,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1800,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-171",
+        "@type": "Service",
+        "code_frgu": 0,
+        "dept_code_frgu": "5640100010000003169",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Разрешение на автомобильные перевозки опасных грузов",
+        "live_operation_time": 1200,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1200,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-166",
+        "@type": "Service",
+        "code_frgu": "5640100010000023039",
+        "dept_code_frgu": "5640100010000003250",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Предоставление в топливоснабжающие организации списков граждан, нуждающихся в обеспечении твердым топливом",
+        "live_operation_time": 900,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 900,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-173",
+        "@type": "Service",
+        "code_frgu": "5640100010000004338",
+        "dept_code_frgu": "5640100010000003686",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Предоставление информации о имуществе, находящегося в муниципальной собственности",
+        "live_operation_time": 1200,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1200,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-167",
+        "@type": "Service",
+        "code_frgu": "5600000000160468827",
+        "dept_code_frgu": "5640100010000003250",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Выписка из похозяйственной книги",
+        "live_operation_time": 900,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 900,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
         "priority": 0,
         "service_code_epgu": 0
     },
@@ -1875,27 +1852,87 @@
         "service_code_epgu": 0
     },
     {
-        "@id": "service-180",
+        "@id": "service-2",
         "@type": "Service",
-        "code_frgu": "5640100010000005075",
-        "dept_code_frgu": "5640100010000003175",
+        "code_frgu": "5640100010000004084",
+        "dept_code_frgu": "5640100010000003159",
         "has_schedule": {
             "live": "schedule-2",
             "prebook": "schedule-2"
         },
-        "label": "Принятие на учет граждан в качестве нуждающихся в жилых помещениях",
-        "live_operation_time": 2700,
+        "label": "Услуга 20",
+        "live_operation_time": 1200,
         "ordering": 1,
         "prebook_interval": 30,
         "prebook_offset": 0,
-        "prebook_operation_time": 2700,
+        "prebook_operation_time": 1200,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 100,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-184",
+        "@type": "Service",
+        "code_frgu": "5640100010000021309",
+        "dept_code_frgu": "5640100010000003143",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Ежемесячная выплата пенсионерам взамен бесплатного проезда на общественном проезде",
+        "live_operation_time": 1200,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1200,
         "prebook_percentage": 100,
         "prebook_today_percentage": 0,
         "priority": 0,
         "service_code_epgu": 0
     },
     {
-        "@id": "service-30",
+        "@id": "service-183",
+        "@type": "Service",
+        "code_frgu": "5640100010000007791",
+        "dept_code_frgu": "5640100010000003131",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Запись в детский сад",
+        "live_operation_time": 900,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 900,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-186",
+        "@type": "Service",
+        "code_frgu": "5640100010000025961",
+        "dept_code_frgu": "5640100010000003105",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Выдача копий архивных документов (администрация города)",
+        "live_operation_time": 1200,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1200,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-20",
         "@type": "Service",
         "code_frgu": 0,
         "dept_code_frgu": "5640100010000003159",
@@ -1903,32 +1940,12 @@
             "live": "schedule-2",
             "prebook": "schedule-2"
         },
-        "label": "Прекращение права постоянного (бессрочного) пользования земель",
-        "live_operation_time": 1200,
+        "label": "Акт приемочной комиссии, подтверждающий завершение переустройства/перепланировки помещения",
+        "live_operation_time": 1500,
         "ordering": 1,
         "prebook_interval": 30,
         "prebook_offset": 0,
-        "prebook_operation_time": 1200,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-25",
-        "@type": "Service",
-        "code_frgu": "5600000000160669025",
-        "dept_code_frgu": "5640100010000003159",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Продление срока действия разрешения на строительство",
-        "live_operation_time": 1200,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1200,
+        "prebook_operation_time": 1500,
         "prebook_percentage": 100,
         "prebook_today_percentage": 0,
         "priority": 0,
@@ -1944,6 +1961,26 @@
             "prebook": "schedule-2"
         },
         "label": "Заключение договора на установку рекламной конструкции",
+        "live_operation_time": 1200,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1200,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-18",
+        "@type": "Service",
+        "code_frgu": 0,
+        "dept_code_frgu": "5640100010000003159",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Разрешение на отклонение от предельных параметров разрешенного строительства, реконструкции объектов капитального строительства",
         "live_operation_time": 1200,
         "ordering": 1,
         "prebook_interval": 30,
@@ -1975,40 +2012,40 @@
         "service_code_epgu": 0
     },
     {
-        "@id": "service-31",
+        "@id": "service-181",
         "@type": "Service",
-        "code_frgu": 0,
-        "dept_code_frgu": "5640100010000003159",
+        "code_frgu": "5640100010000004845",
+        "dept_code_frgu": "5640100010000004731",
         "has_schedule": {
             "live": "schedule-2",
             "prebook": "schedule-2"
         },
-        "label": "Предоставление земельных участков для осуществления строительства путем проведения аукциона",
-        "live_operation_time": 1800,
+        "label": "Разрешение на право организации розничного рынка",
+        "live_operation_time": 1200,
         "ordering": 1,
         "prebook_interval": 30,
         "prebook_offset": 0,
-        "prebook_operation_time": 1800,
+        "prebook_operation_time": 1200,
         "prebook_percentage": 100,
         "prebook_today_percentage": 0,
         "priority": 0,
         "service_code_epgu": 0
     },
     {
-        "@id": "service-33",
+        "@id": "service-21",
         "@type": "Service",
-        "code_frgu": 0,
+        "code_frgu": "5640100010000020386",
         "dept_code_frgu": "5640100010000003159",
         "has_schedule": {
             "live": "schedule-2",
             "prebook": "schedule-2"
         },
-        "label": "Вывод из эксплуатации источников тепловой энергии и тепловых сетей",
-        "live_operation_time": 1200,
+        "label": "Перевод жилого помещения в нежилое или нежилого помещения в жилое помещение",
+        "live_operation_time": 1800,
         "ordering": 1,
         "prebook_interval": 30,
         "prebook_offset": 0,
-        "prebook_operation_time": 1200,
+        "prebook_operation_time": 1800,
         "prebook_percentage": 100,
         "prebook_today_percentage": 0,
         "priority": 0,
@@ -2035,15 +2072,55 @@
         "service_code_epgu": 0
     },
     {
-        "@id": "service-32",
+        "@id": "service-180",
+        "@type": "Service",
+        "code_frgu": "5640100010000005075",
+        "dept_code_frgu": "5640100010000003175",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Принятие на учет граждан в качестве нуждающихся в жилых помещениях",
+        "live_operation_time": 2700,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 2700,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-187",
         "@type": "Service",
         "code_frgu": 0,
+        "dept_code_frgu": 0,
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Выдача повторных свидетельств (справок) ЗАГС",
+        "live_operation_time": 1800,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1800,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-25",
+        "@type": "Service",
+        "code_frgu": "5600000000160669025",
         "dept_code_frgu": "5640100010000003159",
         "has_schedule": {
             "live": "schedule-2",
             "prebook": "schedule-2"
         },
-        "label": "Утверждение схемы расположения земельных участков на кадастровом плане территории",
+        "label": "Продление срока действия разрешения на строительство",
         "live_operation_time": 1200,
         "ordering": 1,
         "prebook_interval": 30,
@@ -2055,40 +2132,20 @@
         "service_code_epgu": 0
     },
     {
-        "@id": "service-35",
-        "@type": "Service",
-        "code_frgu": "5640100010000003719",
-        "dept_code_frgu": "5640100010000003159",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Сведения из информационной системы обеспечения градостроительной деятельности",
-        "live_operation_time": 1200,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1200,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-27",
+        "@id": "service-38",
         "@type": "Service",
         "code_frgu": 0,
-        "dept_code_frgu": "5640100010000003159",
+        "dept_code_frgu": 0,
         "has_schedule": {
             "live": "schedule-2",
             "prebook": "schedule-2"
         },
-        "label": "Установление соответствия вида разрешенного использования земельного участка",
-        "live_operation_time": 1200,
+        "label": "Прием дополнительных документов",
+        "live_operation_time": 900,
         "ordering": 1,
         "prebook_interval": 30,
         "prebook_offset": 0,
-        "prebook_operation_time": 1200,
+        "prebook_operation_time": 900,
         "prebook_percentage": 100,
         "prebook_today_percentage": 0,
         "priority": 0,
@@ -2115,23 +2172,20 @@
         "service_code_epgu": 0
     },
     {
-        "@id": "service-36",
+        "@id": "service-39",
         "@type": "Service",
         "code_frgu": 0,
-        "custom_fields": {
-            "fio": true
-        },
         "dept_code_frgu": 0,
         "has_schedule": {
             "live": "schedule-2",
             "prebook": "schedule-2"
         },
-        "label": "Выдача готовых документов",
-        "live_operation_time": 420,
+        "label": "Консультация Росреестра",
+        "live_operation_time": 900,
         "ordering": 1,
         "prebook_interval": 30,
         "prebook_offset": 0,
-        "prebook_operation_time": 420,
+        "prebook_operation_time": 900,
         "prebook_percentage": 100,
         "prebook_today_percentage": 0,
         "priority": 0,
@@ -2147,26 +2201,6 @@
             "prebook": "schedule-2"
         },
         "label": "Внесение изменений в разрешение на строительство",
-        "live_operation_time": 1200,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1200,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-29",
-        "@type": "Service",
-        "code_frgu": 0,
-        "dept_code_frgu": "5640100010000003159",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Соглашение о перераспределении земель, находящегося в государственной или муниципальной собственности",
         "live_operation_time": 1200,
         "ordering": 1,
         "prebook_interval": 30,
@@ -2218,140 +2252,123 @@
         "service_code_epgu": 0
     },
     {
-        "@id": "service-45",
+        "@id": "service-27",
         "@type": "Service",
-        "code_frgu": "10000015911",
-        "dept_code_frgu": "10003717462",
+        "code_frgu": 0,
+        "dept_code_frgu": "5640100010000003159",
         "has_schedule": {
             "live": "schedule-2",
             "prebook": "schedule-2"
         },
-        "label": "Регистрация ЮЛ, КФХ, ИП",
+        "label": "Установление соответствия вида разрешенного использования земельного участка",
+        "live_operation_time": 1200,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1200,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-35",
+        "@type": "Service",
+        "code_frgu": "5640100010000003719",
+        "dept_code_frgu": "5640100010000003159",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Сведения из информационной системы обеспечения градостроительной деятельности",
+        "live_operation_time": 1200,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1200,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-36",
+        "@type": "Service",
+        "code_frgu": 0,
+        "custom_fields": {
+            "fio": true
+        },
+        "dept_code_frgu": 0,
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Выдача готовых документов",
+        "live_operation_time": 420,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 420,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-32",
+        "@type": "Service",
+        "code_frgu": 0,
+        "dept_code_frgu": "5640100010000003159",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Утверждение схемы расположения земельных участков на кадастровом плане территории",
+        "live_operation_time": 1200,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1200,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-29",
+        "@type": "Service",
+        "code_frgu": 0,
+        "dept_code_frgu": "5640100010000003159",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Соглашение о перераспределении земель, находящегося в государственной или муниципальной собственности",
+        "live_operation_time": 1200,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1200,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-31",
+        "@type": "Service",
+        "code_frgu": 0,
+        "dept_code_frgu": "5640100010000003159",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Предоставление земельных участков для осуществления строительства путем проведения аукциона",
         "live_operation_time": 1800,
         "ordering": 1,
         "prebook_interval": 30,
         "prebook_offset": 0,
         "prebook_operation_time": 1800,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-49",
-        "@type": "Service",
-        "code_frgu": "10000001306",
-        "dept_code_frgu": "10003717462",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Сведения из ЕГРЮЛ и ЕГРИП",
-        "live_operation_time": 900,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 900,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-42",
-        "@type": "Service",
-        "code_frgu": "10000008589",
-        "dept_code_frgu": "10001298922",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Загранпаспорт",
-        "live_operation_time": 1800,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1800,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-46",
-        "@type": "Service",
-        "code_frgu": "10001760860",
-        "dept_code_frgu": "10003717462",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Информирование о налоговом законодательстве РФ",
-        "live_operation_time": 900,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 900,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-41",
-        "@type": "Service",
-        "code_frgu": "10000000611",
-        "dept_code_frgu": "10001298922",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Паспорт РФ",
-        "live_operation_time": 1800,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1800,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-50",
-        "@type": "Service",
-        "code_frgu": "10001760860",
-        "dept_code_frgu": "10003717462",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Справка по уплате налогов",
-        "live_operation_time": 900,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 900,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-48",
-        "@type": "Service",
-        "code_frgu": "10000001368",
-        "dept_code_frgu": "10003717462",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Сведения из ЕГРН",
-        "live_operation_time": 900,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 900,
         "prebook_percentage": 100,
         "prebook_today_percentage": 0,
         "priority": 0,
@@ -2388,15 +2405,175 @@
         "service_code_epgu": 0
     },
     {
-        "@id": "service-39",
+        "@id": "service-33",
         "@type": "Service",
         "code_frgu": 0,
-        "dept_code_frgu": 0,
+        "dept_code_frgu": "5640100010000003159",
         "has_schedule": {
             "live": "schedule-2",
             "prebook": "schedule-2"
         },
-        "label": "Консультация Росреестра",
+        "label": "Вывод из эксплуатации источников тепловой энергии и тепловых сетей",
+        "live_operation_time": 1200,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1200,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-30",
+        "@type": "Service",
+        "code_frgu": 0,
+        "dept_code_frgu": "5640100010000003159",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Прекращение права постоянного (бессрочного) пользования земель",
+        "live_operation_time": 1200,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1200,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-4",
+        "@type": "Service",
+        "code_frgu": "5640100010000020749",
+        "dept_code_frgu": "5640100010000003159",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Услуга 40",
+        "live_operation_time": 2400,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 2400,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 100,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-46",
+        "@type": "Service",
+        "code_frgu": "10001760860",
+        "dept_code_frgu": "10003717462",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Информирование о налоговом законодательстве РФ",
+        "live_operation_time": 900,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 900,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-48",
+        "@type": "Service",
+        "code_frgu": "10000001368",
+        "dept_code_frgu": "10003717462",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Сведения из ЕГРН",
+        "live_operation_time": 900,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 900,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-52",
+        "@type": "Service",
+        "code_frgu": "10000030654",
+        "dept_code_frgu": "10001093933",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Сведения об административных правонарушениях в области дорожного движения",
+        "live_operation_time": 600,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 600,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-41",
+        "@type": "Service",
+        "code_frgu": "10000000611",
+        "dept_code_frgu": "10001298922",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Паспорт РФ",
+        "live_operation_time": 1800,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1800,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-42",
+        "@type": "Service",
+        "code_frgu": "10000008589",
+        "dept_code_frgu": "10001298922",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Загранпаспорт",
+        "live_operation_time": 1800,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1800,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-49",
+        "@type": "Service",
+        "code_frgu": "10000001306",
+        "dept_code_frgu": "10003717462",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Сведения из ЕГРЮЛ и ЕГРИП",
         "live_operation_time": 900,
         "ordering": 1,
         "prebook_interval": 30,
@@ -2428,15 +2605,15 @@
         "service_code_epgu": 0
     },
     {
-        "@id": "service-40",
+        "@id": "service-51",
         "@type": "Service",
-        "code_frgu": 0,
-        "dept_code_frgu": 0,
+        "code_frgu": "10000003882",
+        "dept_code_frgu": "10001093933",
         "has_schedule": {
             "live": "schedule-2",
             "prebook": "schedule-2"
         },
-        "label": "Консультация \"одно окно\"",
+        "label": "Справка о наличии (отсутствии) судимости",
         "live_operation_time": 900,
         "ordering": 1,
         "prebook_interval": 30,
@@ -2448,20 +2625,20 @@
         "service_code_epgu": 0
     },
     {
-        "@id": "service-43",
+        "@id": "service-53",
         "@type": "Service",
-        "code_frgu": "10000020393",
-        "dept_code_frgu": "10001298922",
+        "code_frgu": "10000011206",
+        "dept_code_frgu": "10001747224",
         "has_schedule": {
             "live": "schedule-2",
             "prebook": "schedule-2"
         },
-        "label": "Регистрация граждан по месту пребывания и по месту жительства",
-        "live_operation_time": 1800,
+        "label": "Регистрация прав на недвижимое имущество",
+        "live_operation_time": 2400,
         "ordering": 1,
         "prebook_interval": 30,
         "prebook_offset": 0,
-        "prebook_operation_time": 1800,
+        "prebook_operation_time": 2400,
         "prebook_percentage": 100,
         "prebook_today_percentage": 0,
         "priority": 0,
@@ -2488,35 +2665,15 @@
         "service_code_epgu": 0
     },
     {
-        "@id": "service-4",
+        "@id": "service-50",
         "@type": "Service",
-        "code_frgu": "5640100010000020749",
-        "dept_code_frgu": "5640100010000003159",
+        "code_frgu": "10001760860",
+        "dept_code_frgu": "10003717462",
         "has_schedule": {
             "live": "schedule-2",
             "prebook": "schedule-2"
         },
-        "label": "Услуга 40",
-        "live_operation_time": 2400,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 2400,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 100,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-38",
-        "@type": "Service",
-        "code_frgu": 0,
-        "dept_code_frgu": 0,
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Прием дополнительных документов",
+        "label": "Справка по уплате налогов",
         "live_operation_time": 900,
         "ordering": 1,
         "prebook_interval": 30,
@@ -2548,35 +2705,15 @@
         "service_code_epgu": 0
     },
     {
-        "@id": "service-58",
+        "@id": "service-40",
         "@type": "Service",
-        "code_frgu": "10000068913",
-        "dept_code_frgu": "10000373595",
+        "code_frgu": 0,
+        "dept_code_frgu": 0,
         "has_schedule": {
             "live": "schedule-2",
             "prebook": "schedule-2"
         },
-        "label": "Предоставление земельных участков для целей, связанных со строительством (федеральная собственность)",
-        "live_operation_time": 1200,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1200,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-55",
-        "@type": "Service",
-        "code_frgu": "10000012269",
-        "dept_code_frgu": "10001740957",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Государственный кадастровый учет",
+        "label": "Консультация \"одно окно\"",
         "live_operation_time": 900,
         "ordering": 1,
         "prebook_interval": 30,
@@ -2588,120 +2725,40 @@
         "service_code_epgu": 0
     },
     {
-        "@id": "service-57",
+        "@id": "service-45",
         "@type": "Service",
-        "code_frgu": "10000068975",
-        "dept_code_frgu": "10000373595",
+        "code_frgu": "10000015911",
+        "dept_code_frgu": "10003717462",
         "has_schedule": {
             "live": "schedule-2",
             "prebook": "schedule-2"
         },
-        "label": "Предоставление земельных участков в порядке переоформления прав (федеральная собственность)",
-        "live_operation_time": 1200,
+        "label": "Регистрация ЮЛ, КФХ, ИП",
+        "live_operation_time": 1800,
         "ordering": 1,
         "prebook_interval": 30,
         "prebook_offset": 0,
-        "prebook_operation_time": 1200,
+        "prebook_operation_time": 1800,
         "prebook_percentage": 100,
         "prebook_today_percentage": 0,
         "priority": 0,
         "service_code_epgu": 0
     },
     {
-        "@id": "service-51",
+        "@id": "service-43",
         "@type": "Service",
-        "code_frgu": "10000003882",
-        "dept_code_frgu": "10001093933",
+        "code_frgu": "10000020393",
+        "dept_code_frgu": "10001298922",
         "has_schedule": {
             "live": "schedule-2",
             "prebook": "schedule-2"
         },
-        "label": "Справка о наличии (отсутствии) судимости",
-        "live_operation_time": 900,
+        "label": "Регистрация граждан по месту пребывания и по месту жительства",
+        "live_operation_time": 1800,
         "ordering": 1,
         "prebook_interval": 30,
         "prebook_offset": 0,
-        "prebook_operation_time": 900,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-54",
-        "@type": "Service",
-        "code_frgu": "10000013633",
-        "dept_code_frgu": "10001747224",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Справки из ЕГРП",
-        "live_operation_time": 600,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 600,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-60",
-        "@type": "Service",
-        "code_frgu": "10000068950",
-        "dept_code_frgu": "10000373595",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Отказ от прав на земельные участки (федеральная собственность)",
-        "live_operation_time": 1200,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1200,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-53",
-        "@type": "Service",
-        "code_frgu": "10000011206",
-        "dept_code_frgu": "10001747224",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Регистрация прав на недвижимое имущество",
-        "live_operation_time": 2400,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 2400,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-65",
-        "@type": "Service",
-        "code_frgu": "10002639161",
-        "dept_code_frgu": "10000681641",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Распоряжение средствами материнского капитала",
-        "live_operation_time": 1200,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1200,
+        "prebook_operation_time": 1800,
         "prebook_percentage": 100,
         "prebook_today_percentage": 0,
         "priority": 0,
@@ -2768,340 +2825,20 @@
         "service_code_epgu": 0
     },
     {
-        "@id": "service-61",
+        "@id": "service-54",
         "@type": "Service",
-        "code_frgu": "10000068833",
-        "dept_code_frgu": "10000373595",
+        "code_frgu": "10000013633",
+        "dept_code_frgu": "10001747224",
         "has_schedule": {
             "live": "schedule-2",
             "prebook": "schedule-2"
         },
-        "label": "Продажа (приватизация) земельных участков, на которых расположены объекты недвижимости (федеральная собственность)",
-        "live_operation_time": 1200,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1200,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-52",
-        "@type": "Service",
-        "code_frgu": "10000030654",
-        "dept_code_frgu": "10001093933",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Сведения об административных правонарушениях в области дорожного движения",
+        "label": "Справки из ЕГРП",
         "live_operation_time": 600,
         "ordering": 1,
         "prebook_interval": 30,
         "prebook_offset": 0,
         "prebook_operation_time": 600,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-6",
-        "@type": "Service",
-        "code_frgu": "5600000000160778870",
-        "dept_code_frgu": "5640100010000003159",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Услуга 60",
-        "live_operation_time": 3600,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 3600,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 100,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-59",
-        "@type": "Service",
-        "code_frgu": "10000068963",
-        "dept_code_frgu": "10000373595",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Предоставление земельных участков в аренду/пользование на которых расположены объекты недвижимости (федеральная собственность)",
-        "live_operation_time": 1200,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1200,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-56",
-        "@type": "Service",
-        "code_frgu": "10000013628",
-        "dept_code_frgu": "10001740957",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Сведения из ГКН",
-        "live_operation_time": 900,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 900,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-69",
-        "@type": "Service",
-        "code_frgu": "10000002755",
-        "dept_code_frgu": "10000681641",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "СНИЛС",
-        "live_operation_time": 900,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 900,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-7",
-        "@type": "Service",
-        "code_frgu": "5600000000160787607",
-        "dept_code_frgu": "5640100010000003159",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Подготовка документации по планировке территории",
-        "live_operation_time": 1200,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1200,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-70",
-        "@type": "Service",
-        "code_frgu": "10002561471",
-        "dept_code_frgu": "10000681641",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Информирование о страховых взносах (ПФР)",
-        "live_operation_time": 900,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 900,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-71",
-        "@type": "Service",
-        "code_frgu": "10000002758",
-        "dept_code_frgu": "10000681641",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Информация о состоянии счета по пенсионному страхованию",
-        "live_operation_time": 900,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 900,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-68",
-        "@type": "Service",
-        "code_frgu": "10000002749",
-        "dept_code_frgu": "10000681641",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Переход в НПФ, переход в ПФ РФ",
-        "live_operation_time": 900,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 900,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-66",
-        "@type": "Service",
-        "code_frgu": "10002639161",
-        "dept_code_frgu": "10000681641",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Выплата 20 000 рублей за счет средств материнского капитала",
-        "live_operation_time": 1800,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1800,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-76",
-        "@type": "Service",
-        "code_frgu": "10002632930",
-        "dept_code_frgu": "10000681641",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Федеральная социальная доплата к пенсии",
-        "live_operation_time": 1800,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1800,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-78",
-        "@type": "Service",
-        "code_frgu": "10002574289",
-        "dept_code_frgu": "10000681641",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Изменение номера счета в кредитной организации",
-        "live_operation_time": 1200,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1200,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-77",
-        "@type": "Service",
-        "code_frgu": "10002574289",
-        "dept_code_frgu": "10000681641",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Доставка пенсии",
-        "live_operation_time": 1200,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1200,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-74",
-        "@type": "Service",
-        "code_frgu": "10002561452",
-        "dept_code_frgu": "10000681641",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Оформление на пенсию",
-        "live_operation_time": 1800,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1800,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-79",
-        "@type": "Service",
-        "code_frgu": "10002574289",
-        "dept_code_frgu": "10000681641",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Запрос выплатного (пенсионного) дела",
-        "live_operation_time": 1200,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1200,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-8",
-        "@type": "Service",
-        "code_frgu": "5640100010000004572",
-        "dept_code_frgu": "5640100010000003159",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Утверждение документации по планировке территории",
-        "live_operation_time": 1200,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 1200,
         "prebook_percentage": 100,
         "prebook_today_percentage": 0,
         "priority": 0,
@@ -3128,20 +2865,220 @@
         "service_code_epgu": 0
     },
     {
-        "@id": "service-75",
+        "@id": "service-60",
         "@type": "Service",
-        "code_frgu": "10002565920",
+        "code_frgu": "10000068950",
+        "dept_code_frgu": "10000373595",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Отказ от прав на земельные участки (федеральная собственность)",
+        "live_operation_time": 1200,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1200,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-58",
+        "@type": "Service",
+        "code_frgu": "10000068913",
+        "dept_code_frgu": "10000373595",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Предоставление земельных участков для целей, связанных со строительством (федеральная собственность)",
+        "live_operation_time": 1200,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1200,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-55",
+        "@type": "Service",
+        "code_frgu": "10000012269",
+        "dept_code_frgu": "10001740957",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Государственный кадастровый учет",
+        "live_operation_time": 900,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 900,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-56",
+        "@type": "Service",
+        "code_frgu": "10000013628",
+        "dept_code_frgu": "10001740957",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Сведения из ГКН",
+        "live_operation_time": 900,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 900,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-59",
+        "@type": "Service",
+        "code_frgu": "10000068963",
+        "dept_code_frgu": "10000373595",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Предоставление земельных участков в аренду/пользование на которых расположены объекты недвижимости (федеральная собственность)",
+        "live_operation_time": 1200,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1200,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-66",
+        "@type": "Service",
+        "code_frgu": "10002639161",
         "dept_code_frgu": "10000681641",
         "has_schedule": {
             "live": "schedule-2",
             "prebook": "schedule-2"
         },
-        "label": "Выплата дополнительного социального обеспечения членам летных экипажей, доплата к пенсии работникам угольной промышленности",
+        "label": "Выплата 20 000 рублей за счет средств материнского капитала",
         "live_operation_time": 1800,
         "ordering": 1,
         "prebook_interval": 30,
         "prebook_offset": 0,
         "prebook_operation_time": 1800,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-68",
+        "@type": "Service",
+        "code_frgu": "10000002749",
+        "dept_code_frgu": "10000681641",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Переход в НПФ, переход в ПФ РФ",
+        "live_operation_time": 900,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 900,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-65",
+        "@type": "Service",
+        "code_frgu": "10002639161",
+        "dept_code_frgu": "10000681641",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Распоряжение средствами материнского капитала",
+        "live_operation_time": 1200,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1200,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-6",
+        "@type": "Service",
+        "code_frgu": "5600000000160778870",
+        "dept_code_frgu": "5640100010000003159",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Услуга 60",
+        "live_operation_time": 3600,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 3600,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 100,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-57",
+        "@type": "Service",
+        "code_frgu": "10000068975",
+        "dept_code_frgu": "10000373595",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Предоставление земельных участков в порядке переоформления прав (федеральная собственность)",
+        "live_operation_time": 1200,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1200,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-61",
+        "@type": "Service",
+        "code_frgu": "10000068833",
+        "dept_code_frgu": "10000373595",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Продажа (приватизация) земельных участков, на которых расположены объекты недвижимости (федеральная собственность)",
+        "live_operation_time": 1200,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1200,
         "prebook_percentage": 100,
         "prebook_today_percentage": 0,
         "priority": 0,
@@ -3157,26 +3094,6 @@
             "prebook": "schedule-2"
         },
         "label": "Взносы на накопительную часть пенсии",
-        "live_operation_time": 900,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 900,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-73",
-        "@type": "Service",
-        "code_frgu": "10002574289",
-        "dept_code_frgu": "10000681641",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Справка о размере пенсии",
         "live_operation_time": 900,
         "ordering": 1,
         "prebook_interval": 30,
@@ -3208,75 +3125,55 @@
         "service_code_epgu": 0
     },
     {
-        "@id": "service-84",
+        "@id": "service-8",
         "@type": "Service",
-        "code_frgu": "10001294254",
-        "dept_code_frgu": "10002248699",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Расчет по форме 4-ФСС РФ",
-        "live_operation_time": 900,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 900,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-90",
-        "@type": "Service",
-        "code_frgu": "10001294283",
-        "dept_code_frgu": "10002248699",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Пособие по беременности и родам в случае прекращения деятельности страхователем или невозможности его выплаты",
-        "live_operation_time": 900,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 900,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-88",
-        "@type": "Service",
-        "code_frgu": "10001294274",
-        "dept_code_frgu": "10002248699",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Регистрационный учет юридических лиц по месту нахождения обособленных подразделений",
-        "live_operation_time": 900,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 900,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-9",
-        "@type": "Service",
-        "code_frgu": "5640100010000003648",
+        "code_frgu": "5640100010000004572",
         "dept_code_frgu": "5640100010000003159",
         "has_schedule": {
             "live": "schedule-2",
             "prebook": "schedule-2"
         },
-        "label": "Разрешение на установку рекламной конструкции",
+        "label": "Утверждение документации по планировке территории",
+        "live_operation_time": 1200,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1200,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-70",
+        "@type": "Service",
+        "code_frgu": "10002561471",
+        "dept_code_frgu": "10000681641",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Информирование о страховых взносах (ПФР)",
+        "live_operation_time": 900,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 900,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-74",
+        "@type": "Service",
+        "code_frgu": "10002561452",
+        "dept_code_frgu": "10000681641",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Оформление на пенсию",
         "live_operation_time": 1800,
         "ordering": 1,
         "prebook_interval": 30,
@@ -3288,15 +3185,35 @@
         "service_code_epgu": 0
     },
     {
-        "@id": "service-94",
+        "@id": "service-75",
         "@type": "Service",
-        "code_frgu": "10001294262",
-        "dept_code_frgu": "10002248699",
+        "code_frgu": "10002565920",
+        "dept_code_frgu": "10000681641",
         "has_schedule": {
             "live": "schedule-2",
             "prebook": "schedule-2"
         },
-        "label": "Рассмотрение жалоб, поданных плательщиками страховых взносов (ФСС)",
+        "label": "Выплата дополнительного социального обеспечения членам летных экипажей, доплата к пенсии работникам угольной промышленности",
+        "live_operation_time": 1800,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1800,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-73",
+        "@type": "Service",
+        "code_frgu": "10002574289",
+        "dept_code_frgu": "10000681641",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Справка о размере пенсии",
         "live_operation_time": 900,
         "ordering": 1,
         "prebook_interval": 30,
@@ -3308,40 +3225,20 @@
         "service_code_epgu": 0
     },
     {
-        "@id": "service-89",
+        "@id": "service-78",
         "@type": "Service",
-        "code_frgu": "10001294286",
-        "dept_code_frgu": "10002248699",
+        "code_frgu": "10002574289",
+        "dept_code_frgu": "10000681641",
         "has_schedule": {
             "live": "schedule-2",
             "prebook": "schedule-2"
         },
-        "label": "Ежемесячное пособие по уходу за ребенком в случае прекращения деятельности страхователем или невозможности его выплаты",
-        "live_operation_time": 900,
+        "label": "Изменение номера счета в кредитной организации",
+        "live_operation_time": 1200,
         "ordering": 1,
         "prebook_interval": 30,
         "prebook_offset": 0,
-        "prebook_operation_time": 900,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-86",
-        "@type": "Service",
-        "code_frgu": "10001294268",
-        "dept_code_frgu": "10002248699",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Регистрационный учет по социальному страхованию на случай временной нетрудоспособности и в связи с материнством",
-        "live_operation_time": 900,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 900,
+        "prebook_operation_time": 1200,
         "prebook_percentage": 100,
         "prebook_today_percentage": 0,
         "priority": 0,
@@ -3368,15 +3265,205 @@
         "service_code_epgu": 0
     },
     {
-        "@id": "service-91",
+        "@id": "service-71",
         "@type": "Service",
-        "code_frgu": "10001294280",
+        "code_frgu": "10000002758",
+        "dept_code_frgu": "10000681641",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Информация о состоянии счета по пенсионному страхованию",
+        "live_operation_time": 900,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 900,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-69",
+        "@type": "Service",
+        "code_frgu": "10000002755",
+        "dept_code_frgu": "10000681641",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "СНИЛС",
+        "live_operation_time": 900,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 900,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-77",
+        "@type": "Service",
+        "code_frgu": "10002574289",
+        "dept_code_frgu": "10000681641",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Доставка пенсии",
+        "live_operation_time": 1200,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1200,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-7",
+        "@type": "Service",
+        "code_frgu": "5600000000160787607",
+        "dept_code_frgu": "5640100010000003159",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Подготовка документации по планировке территории",
+        "live_operation_time": 1200,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1200,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-81",
+        "@type": "Service",
+        "code_frgu": "10000058507",
+        "dept_code_frgu": "10000681641",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Информация о социальной помощи в виде набора социальных услуг",
+        "live_operation_time": 1200,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1200,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-76",
+        "@type": "Service",
+        "code_frgu": "10002632930",
+        "dept_code_frgu": "10000681641",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Федеральная социальная доплата к пенсии",
+        "live_operation_time": 1800,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1800,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-79",
+        "@type": "Service",
+        "code_frgu": "10002574289",
+        "dept_code_frgu": "10000681641",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Запрос выплатного (пенсионного) дела",
+        "live_operation_time": 1200,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1200,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-9",
+        "@type": "Service",
+        "code_frgu": "5640100010000003648",
+        "dept_code_frgu": "5640100010000003159",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Разрешение на установку рекламной конструкции",
+        "live_operation_time": 1800,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 1800,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "sg-10",
+        "@type": "ServiceGroup",
+        "content": [
+            "service-82"
+        ],
+        "items_per_page": "10",
+        "label": "Управление Федеральной службы судебных приставов по Оренбургской области",
+        "view_name": "base"
+    },
+    {
+        "@id": "service-85",
+        "@type": "Service",
+        "code_frgu": "10001294277",
         "dept_code_frgu": "10002248699",
         "has_schedule": {
             "live": "schedule-2",
             "prebook": "schedule-2"
         },
-        "label": "Пособие по временной нетрудоспособности в случае прекращения деятельности страхователем или невозможности его выплаты",
+        "label": "Регистрационный учет страхователей в связи с заключением гражданско-правового договора",
+        "live_operation_time": 900,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 900,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-94",
+        "@type": "Service",
+        "code_frgu": "10001294262",
+        "dept_code_frgu": "10002248699",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Рассмотрение жалоб, поданных плательщиками страховых взносов (ФСС)",
         "live_operation_time": 900,
         "ordering": 1,
         "prebook_interval": 30,
@@ -3408,20 +3495,176 @@
         "service_code_epgu": 0
     },
     {
-        "@id": "service-81",
+        "@id": "sg-0",
+        "@type": "ServiceGroup",
+        "content": [
+            "service-1",
+            "service-2",
+            "service-3",
+            "service-4",
+            "service-5",
+            "service-6"
+        ],
+        "items_per_page": "12",
+        "label": "Все",
+        "view_name": "base",
+        "view_order": "0"
+    },
+    {
+        "@id": "service-92",
         "@type": "Service",
-        "code_frgu": "10000058507",
-        "dept_code_frgu": "10000681641",
+        "code_frgu": "10001687682",
+        "dept_code_frgu": "10002248699",
         "has_schedule": {
             "live": "schedule-2",
             "prebook": "schedule-2"
         },
-        "label": "Информация о социальной помощи в виде набора социальных услуг",
-        "live_operation_time": 1200,
+        "label": "Информирование о страховых взносах (ФСС)",
+        "live_operation_time": 900,
         "ordering": 1,
         "prebook_interval": 30,
         "prebook_offset": 0,
-        "prebook_operation_time": 1200,
+        "prebook_operation_time": 900,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "sg-1",
+        "@type": "ServiceGroup",
+        "content": [
+            "sg-2",
+            "sg-3",
+            "sg-3",
+            "sg-4",
+            "sg-5",
+            "sg-6",
+            "sg-7",
+            "sg-8",
+            "sg-9",
+            "sg-10",
+            "sg-11"
+        ],
+        "items_per_page": "10",
+        "label": "Услуги федеральных органов исполнительной власти",
+        "view_name": "base"
+    },
+    {
+        "@id": "service-83",
+        "@type": "Service",
+        "code_frgu": "10001294251",
+        "dept_code_frgu": "10002248699",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Отчет по форме 4а-ФСС РФ",
+        "live_operation_time": 900,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 900,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-91",
+        "@type": "Service",
+        "code_frgu": "10001294280",
+        "dept_code_frgu": "10002248699",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Пособие по временной нетрудоспособности в случае прекращения деятельности страхователем или невозможности его выплаты",
+        "live_operation_time": 900,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 900,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-84",
+        "@type": "Service",
+        "code_frgu": "10001294254",
+        "dept_code_frgu": "10002248699",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Расчет по форме 4-ФСС РФ",
+        "live_operation_time": 900,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 900,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-86",
+        "@type": "Service",
+        "code_frgu": "10001294268",
+        "dept_code_frgu": "10002248699",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Регистрационный учет по социальному страхованию на случай временной нетрудоспособности и в связи с материнством",
+        "live_operation_time": 900,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 900,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-89",
+        "@type": "Service",
+        "code_frgu": "10001294286",
+        "dept_code_frgu": "10002248699",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Ежемесячное пособие по уходу за ребенком в случае прекращения деятельности страхователем или невозможности его выплаты",
+        "live_operation_time": 900,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 900,
+        "prebook_percentage": 100,
+        "prebook_today_percentage": 0,
+        "priority": 0,
+        "service_code_epgu": 0
+    },
+    {
+        "@id": "service-90",
+        "@type": "Service",
+        "code_frgu": "10001294283",
+        "dept_code_frgu": "10002248699",
+        "has_schedule": {
+            "live": "schedule-2",
+            "prebook": "schedule-2"
+        },
+        "label": "Пособие по беременности и родам в случае прекращения деятельности страхователем или невозможности его выплаты",
+        "live_operation_time": 900,
+        "ordering": 1,
+        "prebook_interval": 30,
+        "prebook_offset": 0,
+        "prebook_operation_time": 900,
         "prebook_percentage": 100,
         "prebook_today_percentage": 0,
         "priority": 0,
@@ -3448,15 +3691,15 @@
         "service_code_epgu": 0
     },
     {
-        "@id": "service-83",
+        "@id": "service-88",
         "@type": "Service",
-        "code_frgu": "10001294251",
+        "code_frgu": "10001294274",
         "dept_code_frgu": "10002248699",
         "has_schedule": {
             "live": "schedule-2",
             "prebook": "schedule-2"
         },
-        "label": "Отчет по форме 4а-ФСС РФ",
+        "label": "Регистрационный учет юридических лиц по месту нахождения обособленных подразделений",
         "live_operation_time": 900,
         "ordering": 1,
         "prebook_interval": 30,
@@ -3468,64 +3711,44 @@
         "service_code_epgu": 0
     },
     {
-        "@id": "service-85",
-        "@type": "Service",
-        "code_frgu": "10001294277",
-        "dept_code_frgu": "10002248699",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Регистрационный учет страхователей в связи с заключением гражданско-правового договора",
-        "live_operation_time": 900,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 900,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "service-92",
-        "@type": "Service",
-        "code_frgu": "10001687682",
-        "dept_code_frgu": "10002248699",
-        "has_schedule": {
-            "live": "schedule-2",
-            "prebook": "schedule-2"
-        },
-        "label": "Информирование о страховых взносах (ФСС)",
-        "live_operation_time": 900,
-        "ordering": 1,
-        "prebook_interval": 30,
-        "prebook_offset": 0,
-        "prebook_operation_time": 900,
-        "prebook_percentage": 100,
-        "prebook_today_percentage": 0,
-        "priority": 0,
-        "service_code_epgu": 0
-    },
-    {
-        "@id": "sg-10",
+        "@id": "sg-21",
         "@type": "ServiceGroup",
         "content": [
-            "service-82"
+            "service-172",
+            "service-173"
         ],
         "items_per_page": "10",
-        "label": "Управление Федеральной службы судебных приставов по Оренбургской области",
+        "label": "Комитет по управлению имуществом города Оренбурга",
         "view_name": "base"
     },
     {
-        "@id": "sg-13",
+        "@id": "sg-15",
         "@type": "ServiceGroup",
         "content": [
-            "service-145",
-            "service-146"
+            "service-154",
+            "service-155",
+            "service-156",
+            "service-157",
+            "service-158"
         ],
         "items_per_page": "10",
-        "label": "Министерство экономического развития, промышленной политики и торговли Оренбургской области",
+        "label": "Министерство социального развития Оренбургской области",
+        "view_name": "base"
+    },
+    {
+        "@id": "sg-14",
+        "@type": "ServiceGroup",
+        "content": [
+            "service-147",
+            "service-148",
+            "service-149",
+            "service-150",
+            "service-151",
+            "service-152",
+            "service-153"
+        ],
+        "items_per_page": "10",
+        "label": "Министерство труда и занятости населения Оренбургской области",
         "view_name": "base"
     },
     {
@@ -3537,27 +3760,6 @@
         ],
         "items_per_page": "10",
         "label": "Управление жилищно-коммунального хозяйства администрации города Оренбурга",
-        "view_name": "base"
-    },
-    {
-        "@id": "sg-19",
-        "@type": "ServiceGroup",
-        "content": [
-            "service-168"
-        ],
-        "items_per_page": "10",
-        "label": "Режимно-секретный отдел администрации города Оренбурга",
-        "view_name": "base"
-    },
-    {
-        "@id": "sg-21",
-        "@type": "ServiceGroup",
-        "content": [
-            "service-172",
-            "service-173"
-        ],
-        "items_per_page": "10",
-        "label": "Комитет по управлению имуществом города Оренбурга",
         "view_name": "base"
     },
     {
@@ -3574,16 +3776,38 @@
         "view_name": "base"
     },
     {
-        "@id": "sg-12",
+        "@id": "sg-20",
         "@type": "ServiceGroup",
         "content": [
-            "sg-13",
-            "sg-14",
-            "sg-15",
-            "sg-16"
+            "service-169",
+            "service-170",
+            "service-171"
         ],
         "items_per_page": "10",
-        "label": "Услуги органов исполнительной власти субъекта Российской Федерации",
+        "label": "Управление строительства и дорожного хозяйства администрации города Оренбурга",
+        "view_name": "base"
+    },
+    {
+        "@id": "sg-16",
+        "@type": "ServiceGroup",
+        "content": [
+            "service-159",
+            "service-160",
+            "service-161",
+            "service-162"
+        ],
+        "items_per_page": "10",
+        "label": "Комитет по делам архивов Оренбургской области",
+        "view_name": "base"
+    },
+    {
+        "@id": "sg-24",
+        "@type": "ServiceGroup",
+        "content": [
+            "service-181"
+        ],
+        "items_per_page": "10",
+        "label": "Комитет потребительского рынка, услуг и развития предпринимательства администрации города Оренбурга",
         "view_name": "base"
     },
     {
@@ -3609,6 +3833,16 @@
         "view_name": "base"
     },
     {
+        "@id": "sg-19",
+        "@type": "ServiceGroup",
+        "content": [
+            "service-168"
+        ],
+        "items_per_page": "10",
+        "label": "Режимно-секретный отдел администрации города Оренбурга",
+        "view_name": "base"
+    },
+    {
         "@id": "sg-18",
         "@type": "ServiceGroup",
         "content": [
@@ -3623,20 +3857,42 @@
         "view_name": "base"
     },
     {
-        "@id": "sg-0",
+        "@id": "sg-25",
         "@type": "ServiceGroup",
         "content": [
-            "service-1",
-            "service-2",
-            "service-3",
-            "service-4",
-            "service-5",
-            "service-6"
+            "service-182",
+            "service-183"
         ],
-        "items_per_page": "12",
-        "label": "Все",
-        "view_name": "base",
-        "view_order": "0"
+        "items_per_page": "10",
+        "label": "Управление образования администрации города Оренбурга",
+        "view_name": "base"
+    },
+    {
+        "@id": "sg-12",
+        "@type": "ServiceGroup",
+        "content": [
+            "sg-13",
+            "sg-14",
+            "sg-15",
+            "sg-16"
+        ],
+        "items_per_page": "10",
+        "label": "Услуги органов исполнительной власти субъекта Российской Федерации",
+        "view_name": "base"
+    },
+    {
+        "@id": "sg-23",
+        "@type": "ServiceGroup",
+        "content": [
+            "service-176",
+            "service-177",
+            "service-178",
+            "service-179",
+            "service-180"
+        ],
+        "items_per_page": "10",
+        "label": "Управление жилищной политики администрации города Оренбурга",
+        "view_name": "base"
     },
     {
         "@id": "sg-11",
@@ -3660,78 +3916,77 @@
         "view_name": "base"
     },
     {
-        "@id": "sg-1",
+        "@id": "sg-13",
         "@type": "ServiceGroup",
         "content": [
-            "sg-2",
-            "sg-3",
-            "sg-3",
-            "sg-4",
-            "sg-5",
-            "sg-6",
-            "sg-7",
-            "sg-8",
-            "sg-9",
-            "sg-10",
-            "sg-11"
+            "service-145",
+            "service-146"
         ],
         "items_per_page": "10",
-        "label": "Услуги федеральных органов исполнительной власти",
+        "label": "Министерство экономического развития, промышленной политики и торговли Оренбургской области",
         "view_name": "base"
     },
     {
-        "@id": "sg-16",
+        "@id": "sg-8",
         "@type": "ServiceGroup",
         "content": [
-            "service-159",
-            "service-160",
-            "service-161",
-            "service-162"
+            "service-63"
         ],
         "items_per_page": "10",
-        "label": "Комитет по делам архивов Оренбургской области",
+        "label": "Управление Федеральной службы по надзору в сфере защиты прав потребителей и благополучия человека по Оренбургской области",
         "view_name": "base"
     },
     {
-        "@id": "sg-20",
+        "@id": "sg-6",
         "@type": "ServiceGroup",
         "content": [
-            "service-169",
-            "service-170",
-            "service-171"
+            "service-55",
+            "service-56"
         ],
         "items_per_page": "10",
-        "label": "Управление строительства и дорожного хозяйства администрации города Оренбурга",
+        "label": "Филиал ФГБУ \"ФКП Росреестра\" по Оренбургской области (Кадастровая палата)",
         "view_name": "base"
     },
     {
-        "@id": "sg-14",
+        "@id": "sg-29",
         "@type": "ServiceGroup",
         "content": [
-            "service-147",
-            "service-148",
-            "service-149",
-            "service-150",
-            "service-151",
-            "service-152",
-            "service-153"
+            "service-187"
         ],
         "items_per_page": "10",
-        "label": "Министерство труда и занятости населения Оренбургской области",
+        "label": "Управление ЗАГС администрации города Оренбурга",
         "view_name": "base"
     },
     {
-        "@id": "sg-15",
+        "@id": "sg-5",
         "@type": "ServiceGroup",
         "content": [
-            "service-154",
-            "service-155",
-            "service-156",
-            "service-157",
-            "service-158"
+            "service-53",
+            "service-54"
         ],
         "items_per_page": "10",
-        "label": "Министерство социального развития Оренбургской области",
+        "label": "Управление Федеральной службы государственной регистрации, кадастра и картографии по Оренбургской области (Росреестр)",
+        "view_name": "base"
+    },
+    {
+        "@id": "sg-26",
+        "@type": "ServiceGroup",
+        "content": [
+            "service-184"
+        ],
+        "items_per_page": "10",
+        "label": "Управление по социальной политике администрации города Оренбурга",
+        "view_name": "base"
+    },
+    {
+        "@id": "sg-4",
+        "@type": "ServiceGroup",
+        "content": [
+            "service-51",
+            "service-52"
+        ],
+        "items_per_page": "10",
+        "label": "Управление Министерства внутренних дел Российской Федерации по Оренбургской области",
         "view_name": "base"
     },
     {
@@ -3759,6 +4014,75 @@
         ],
         "items_per_page": "10",
         "label": "Отделение Пенсионного Фонда Российской Федерации по Оренбургской области",
+        "view_name": "base"
+    },
+    {
+        "@id": "term-1",
+        "@type": "Terminal",
+        "attached_to": "department-1",
+        "booking_methods": [
+            "live",
+            "prebook"
+        ],
+        "bound_service_groups": "sg-0",
+        "default_agent": "megatron-1",
+        "device_type": "terminal",
+        "label": "Терминал 1",
+        "occupied_by": [
+            "megatron-1"
+        ],
+        "prebook_autoregister": false,
+        "reload_interval": 5
+    },
+    {
+        "@id": "sg-31",
+        "@type": "ServiceGroup",
+        "content": [
+            "service-39",
+            "service-40"
+        ],
+        "items_per_page": "10",
+        "label": "Консультация",
+        "view_name": "base"
+    },
+    {
+        "@id": "sg-7",
+        "@type": "ServiceGroup",
+        "content": [
+            "service-57",
+            "service-58",
+            "service-59",
+            "service-60",
+            "service-61",
+            "service-62"
+        ],
+        "items_per_page": "10",
+        "label": "Территориальное управление Федерального агентства по управлению государственным имуществом по Оренбургской области",
+        "view_name": "base"
+    },
+    {
+        "@id": "sg-28",
+        "@type": "ServiceGroup",
+        "content": [
+            "service-186"
+        ],
+        "items_per_page": "10",
+        "label": "Управление организационно-документационного обеспечения администрации города Оренбурга",
+        "view_name": "base"
+    },
+    {
+        "@id": "sg-3",
+        "@type": "ServiceGroup",
+        "content": [
+            "service-45",
+            "service-46",
+            "service-47",
+            "service-48",
+            "service-49",
+            "service-50"
+        ],
+        "items_per_page": "10",
+        "label": "Управление Федеральной налоговой службы по Оренбургской области",
         "view_name": "base"
     },
     {
@@ -3806,69 +4130,6 @@
         "view_name": "base"
     },
     {
-        "@id": "sg-31",
-        "@type": "ServiceGroup",
-        "content": [
-            "service-39",
-            "service-40"
-        ],
-        "items_per_page": "10",
-        "label": "Консультация",
-        "view_name": "base"
-    },
-    {
-        "@id": "sg-24",
-        "@type": "ServiceGroup",
-        "content": [
-            "service-181"
-        ],
-        "items_per_page": "10",
-        "label": "Комитет потребительского рынка, услуг и развития предпринимательства администрации города Оренбурга",
-        "view_name": "base"
-    },
-    {
-        "@id": "sg-25",
-        "@type": "ServiceGroup",
-        "content": [
-            "service-182",
-            "service-183"
-        ],
-        "items_per_page": "10",
-        "label": "Управление образования администрации города Оренбурга",
-        "view_name": "base"
-    },
-    {
-        "@id": "sg-26",
-        "@type": "ServiceGroup",
-        "content": [
-            "service-184"
-        ],
-        "items_per_page": "10",
-        "label": "Управление по социальной политике администрации города Оренбурга",
-        "view_name": "base"
-    },
-    {
-        "@id": "sg-4",
-        "@type": "ServiceGroup",
-        "content": [
-            "service-51",
-            "service-52"
-        ],
-        "items_per_page": "10",
-        "label": "Управление Министерства внутренних дел Российской Федерации по Оренбургской области",
-        "view_name": "base"
-    },
-    {
-        "@id": "sg-28",
-        "@type": "ServiceGroup",
-        "content": [
-            "service-186"
-        ],
-        "items_per_page": "10",
-        "label": "Управление организационно-документационного обеспечения администрации города Оренбурга",
-        "view_name": "base"
-    },
-    {
         "@id": "sg-27",
         "@type": "ServiceGroup",
         "content": [
@@ -3877,110 +4138,6 @@
         "items_per_page": "10",
         "label": "Муниципальное бюджетное учреждение \"Земельный вектор\"",
         "view_name": "base"
-    },
-    {
-        "@id": "sg-29",
-        "@type": "ServiceGroup",
-        "content": [
-            "service-187"
-        ],
-        "items_per_page": "10",
-        "label": "Управление ЗАГС администрации города Оренбурга",
-        "view_name": "base"
-    },
-    {
-        "@id": "sg-8",
-        "@type": "ServiceGroup",
-        "content": [
-            "service-63"
-        ],
-        "items_per_page": "10",
-        "label": "Управление Федеральной службы по надзору в сфере защиты прав потребителей и благополучия человека по Оренбургской области",
-        "view_name": "base"
-    },
-    {
-        "@id": "sg-7",
-        "@type": "ServiceGroup",
-        "content": [
-            "service-57",
-            "service-58",
-            "service-59",
-            "service-60",
-            "service-61",
-            "service-62"
-        ],
-        "items_per_page": "10",
-        "label": "Территориальное управление Федерального агентства по управлению государственным имуществом по Оренбургской области",
-        "view_name": "base"
-    },
-    {
-        "@id": "sg-6",
-        "@type": "ServiceGroup",
-        "content": [
-            "service-55",
-            "service-56"
-        ],
-        "items_per_page": "10",
-        "label": "Филиал ФГБУ \"ФКП Росреестра\" по Оренбургской области (Кадастровая палата)",
-        "view_name": "base"
-    },
-    {
-        "@id": "sg-5",
-        "@type": "ServiceGroup",
-        "content": [
-            "service-53",
-            "service-54"
-        ],
-        "items_per_page": "10",
-        "label": "Управление Федеральной службы государственной регистрации, кадастра и картографии по Оренбургской области (Росреестр)",
-        "view_name": "base"
-    },
-    {
-        "@id": "sg-23",
-        "@type": "ServiceGroup",
-        "content": [
-            "service-176",
-            "service-177",
-            "service-178",
-            "service-179",
-            "service-180"
-        ],
-        "items_per_page": "10",
-        "label": "Управление жилищной политики администрации города Оренбурга",
-        "view_name": "base"
-    },
-    {
-        "@id": "sg-3",
-        "@type": "ServiceGroup",
-        "content": [
-            "service-45",
-            "service-46",
-            "service-47",
-            "service-48",
-            "service-49",
-            "service-50"
-        ],
-        "items_per_page": "10",
-        "label": "Управление Федеральной налоговой службы по Оренбургской области",
-        "view_name": "base"
-    },
-    {
-        "@id": "term-1",
-        "@type": "Terminal",
-        "attached_to": "department-1",
-        "booking_methods": [
-            "live",
-            "prebook"
-        ],
-        "bound_service_groups": "sg-0",
-        "default_agent": "megatron-1",
-        "device_type": "terminal",
-        "label": "Терминал 1",
-        "occupied_by": [
-            "megatron-1"
-        ],
-        "prebook_autoregister": false,
-        "reload_interval": 5
     },
     {
         "@id": "user_info_fields",
