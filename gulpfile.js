@@ -16,6 +16,7 @@ let inj = new Injector(cfg);
 gulp.task('inject', () => {
 	inj.init_n1ql()
 		.then((res) => {
+			let data = require(cfg.filename);
 			console.log("UPSERT");
 			return inj.upsert(data);
 		})
