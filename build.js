@@ -5,7 +5,7 @@ let babel = require("gulp-babel");
 
 gulp.task("es6-js", function() {
 	return gulp.src(["src/**/*.js", "tests/**/*.js"])
-		.pipe(babel({
+		.pipe(babel({"comments":false,
 			"presets": [
 				"es2015-node5"
 			],
