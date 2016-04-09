@@ -24,7 +24,8 @@ class Injector {
 	}
 
 	pullAll() {
-		return this.main_bucket.N1QL(Couchbird.N1qlQuery.fromString("SELECT * FROM `" + this.cfg.buckets.main + "` WHERE NOT ARRAY_CONTAINS(['Task', 'Ticket', 'Plan', 'History', 'Cache'], \`@type\`) AND meta().id NOT LIKE 'counter%';"))
+		return this.main_bucket.N1QL(Couchbird.N1qlQuery.fromString("SELECT * FROM `" + this.cfg.buckets.main + "` WHERE \`@type\`='Ticket' ;"))
+			// return this.main_bucket.N1QL(Couchbird.N1qlQuery.fromString("SELECT * FROM `" + this.cfg.buckets.main + "` WHERE NOT ARRAY_CONTAINS(['Task', 'Plan','Ticket', 'History', 'Cache'], \`@type\`) AND meta().id NOT LIKE 'counter%';"))
 			.then(res => _.map(res, this.cfg.buckets.main));
 	}
 
