@@ -50,6 +50,6 @@
     "cbird-rdf": "git+https://github.com/YuuKohaku/cbird-rdf.git",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
-    "lodash": "^4.8.2"
+    "lodash": "^4.9.0"
   }
 }
