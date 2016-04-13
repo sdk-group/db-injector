@@ -45,11 +45,11 @@
     "gulp-watch": "^4.3.5"
   },
   "dependencies": {
-    "bluebird": "^3.3.4",
+    "bluebird": "^3.3.5",
     "Couchbird": "git+https://github.com/YuuKohaku/Couchbird.git",
     "cbird-rdf": "git+https://github.com/YuuKohaku/cbird-rdf.git",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
-    "lodash": "^4.9.0"
+    "lodash": "^4.10.0"
   }
 }
