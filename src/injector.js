@@ -23,8 +23,20 @@ class Injector {
 		return this.main_bucket.removeNodes(keys);
 	}
 
+	makeCounters(cnt) {
+		return Promise.all(_.map(cnt, (c, key) => {
+			console.log(c, key, this.cfg.couchbird)
+			return this.main_bucket.counter(key, _.parseInt(c), {
+				initial: 0
+			})
+		}));
+	}
+
+	getCounters(cnt) {}
+
 	pullAll() {
-		return this.main_bucket.N1QL(Couchbird.N1qlQuery.fromString("SELECT * FROM `" + this.cfg.buckets.main + "` WHERE \`@type\`='Ticket' ;"))
+		// return this.main_bucket.N1QL(Couchbird.N1qlQuery.fromString("SELECT * FROM `" + this.cfg.buckets.main + "` WHERE \`@type\`='Ticket' ;"))
+		return this.main_bucket.N1QL(Couchbird.N1qlQuery.fromString("SELECT meta(d) FROM `" + this.cfg.buckets.main + "` d WHERE meta(d).id LIKE 'counter-ticket%' ;"))
 			// return this.main_bucket.N1QL(Couchbird.N1qlQuery.fromString("SELECT * FROM `" + this.cfg.buckets.main + "` WHERE NOT ARRAY_CONTAINS(['Task', 'Plan','Ticket', 'History', 'Cache'], \`@type\`) AND meta().id NOT LIKE 'counter%';"))
 			.then(res => _.map(res, this.cfg.buckets.main));
 	}
